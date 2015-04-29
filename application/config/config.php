@@ -17,12 +17,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | environments.
 |
 */
-<<<<<<< HEAD
-//$config['base_url'] = 'http://localhost/tedx/';
-$config['base_url'] = 'http://localhost/';
-=======
-$config['base_url'] = '';
->>>>>>> origin/master
+
+$config['base_url'] = 'http://localhost/tedx/';
 
 /*
 |--------------------------------------------------------------------------
