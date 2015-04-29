@@ -25,8 +25,8 @@
                 </ul>
                 <div id="my-tab-content" class="tab-content">
                     <div class="tab-pane fade in active" id="red">
-                        <h1>Red</h1>
-                        <p>red red red red red red</p>
+                        <h1>Wat?</h1>
+                        <p></p>
                     </div>
                     <div class="tab-pane fade" id="orange">
                         <h1>Orange</h1>

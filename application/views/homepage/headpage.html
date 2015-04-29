@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Hoofdpagina</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <?php
+// $page_title will be used in <title></title> inside forum-header.php
+$page_title = basename(__FILE__, ".php");
+
+// includes helpers/bootstrap-includes.php
+require 'application/views/layout_components/header.php';
+?>
+        <?php
+// includes helpers/bootstrap-includes.php
+require 'application/views/layout_components/carousel.php';
+?>
+        <h2>Wat is TEDx?</h2>
+        <div>
+            TED staat voor Technologie, Entertainment en Design. X staat voor onafhankelijke organisatie. <br>
+            Het is een non-profit organisatie in de VS, gericht op creatieve ideëen die het waard zijn over de wereld verspreid te worden.<br>
+            TED organiseerd jaarlijks een 4 dagen durende conferentie om over creatieve ideëen te spreken. Het lokt mensen van over de hele wereld.<br>
+            Het TED congres geeft wel richtlijnen voor het TEDx programma, maar de TEDx evenementen zijn zelf georganiseert.
+        </div>
+        <h2>Wat is TEDxPXL?</h2>
+        <div>
+            TEDxPXL is de programma van de PXL om mensen samen te brengen om een TED ervaring te delen.<br>
+            Deze site is toegewijd aan de evenementen die PXL organiseerd rond TEDx.<br>
+            Hier kunt u de toekomstigen evenementen, de commentaren, ... vinden.
+            <br>
+        </div>
+    </body>
+</html>

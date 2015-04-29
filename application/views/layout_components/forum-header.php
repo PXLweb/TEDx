@@ -1,8 +1,8 @@
 <?php
 // current location: layout_components/forum-header.php
 require 'application/helpers/bootstrap-includes.php';
-require 'application/helpers/Connection.php';
-$tedxDbHandle = Connection::getPDO(Connection::getTEDxDbSettings());
+//require 'application/helpers/Connection.php';
+//$tedxDbHandle = Connection::getPDO(Connection::getTEDxDbSettings());
 
 //if ($tedxDbHandle instanceof PDO) {
 //    echo "pdo loaded";
