@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 #<IfModule mod_rewrite.c>
 #        RewriteEngine On
 #        RewriteBase /
@@ -13,6 +14,8 @@
 #        RewriteRule ^(.*)$ /index.php/$1 [L]
 #</IfModule>
 
+=======
+>>>>>>> origin/master
 RewriteEngine On
 RewriteCond $1 !^(index\.php|assets|robots\.txt)
 RewriteRule ^(.*)$ index.php/$1 [L,QSA]
