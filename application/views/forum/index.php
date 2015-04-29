@@ -1,9 +1,12 @@
 <?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+?>
+<?php
 // $page_title will be used in <title></title> inside forum-header.php
-$page_title = basename(__FILE__);
+$page_title = basename(__FILE__, ".php");
 
 // includes helpers/bootstrap-includes.php
-require '../layout_components/forum-header.php';
+require 'application/views/layout_components/forum-header.php';
 ?>
 
 <div class="col-md-4">
@@ -11,6 +14,7 @@ require '../layout_components/forum-header.php';
 <div class="col-md-8">Topic subject</div>
 <div class="col-md-4">Sprekers</div>
 <div class="col-md-8">Spreker aanvragen</div>
+
 <?php
 //echo '<tr>';
 //echo '<td class="leftpart">';
@@ -24,4 +28,4 @@ require '../layout_components/forum-header.php';
 
 
 <?php
-require '../layout_components/forum-footer.php';
+require 'application/views/layout_components/forum-footer.php';
