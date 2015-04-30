@@ -17,20 +17,24 @@
         <div class="container">
             <div id="content">
                 <ul id="tabs" class="nav nav-tabs" data-tabs="tabs">
-                    <li class="active"><a href="#red" data-toggle="tab">Red</a></li>
-                    <li><a href="#orange" data-toggle="tab">Orange</a></li>
+                    <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
+                    <li><a href="#events" data-toggle="tab">Events</a></li>
+                    <li><a href="#forum" data-toggle="tab">Forum</a></li>
                     <li><a href="#yellow" data-toggle="tab">Yellow</a></li>
                     <li><a href="#green" data-toggle="tab">Green</a></li>
-                    <li><a href="#blue" data-toggle="tab">Blue</a></li>
                 </ul>
                 <div id="my-tab-content" class="tab-content">
-                    <div class="tab-pane fade in active" id="red">
-                        <h1>Wat?</h1>
-                        <p></p>
+                    <div class="tab-pane fade in active" id="home">
+                        <h1>Home</h1>
+                        <p>Hier komt de homepage</p>
                     </div>
-                    <div class="tab-pane fade" id="orange">
-                        <h1>Orange</h1>
-                        <p>orange orange orange orange orange</p>
+                    <div class="tab-pane fade" id="events">
+                        <h1>Events</h1>
+                        <p>hier komen de events</p>
+                    </div>
+                    <div class="tab-pane fade" id="forum">
+                        <h1>Forum</h1>
+                        <p>hier komt het forum</p>
                     </div>
                     <div class="tab-pane fade" id="yellow">
                         <h1>Yellow</h1>
@@ -40,10 +44,7 @@
                         <h1>Green</h1>
                         <p>green green green green green</p>
                     </div>
-                    <div class="tab-pane fade" id="blue">
-                        <h1>Blue</h1>
-                        <p>blue blue blue blue blue</p>
-                    </div>
+                    
                 </div>
             </div>
 

@@ -12,9 +12,9 @@ require 'application/helpers/bootstrap-includes.php';
         <meta name="keywords" content="put, keywords, here" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title><?php echo $page_title; ?></title>
-        <link rel="stylesheet" href="assets/css/forum.css" type="text/css" />
+        <link rel="stylesheet" href="assets/css/header.css" type="text/css" />
     </head>
     <body>
         <div  class="container">
-            <h1>Forum</h1>
+            <h1><img alt="PXL" src="" id="links"/>TEDxPXL<img alt="TEDx" src="" id="rechts"/></h1>
             <?php require 'application/views/layout_components/navbar-tabs.php'; ?>
