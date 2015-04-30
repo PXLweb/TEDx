@@ -16,6 +16,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | explicitly and never rely on auto-guessing, especially in production
 | environments.
 |
+ * http://localhost/tedx/
 */
 
 $config['base_url'] = 'http://localhost/tedx/';
@@ -30,7 +31,7 @@ $config['base_url'] = 'http://localhost/tedx/';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -47,7 +48,11 @@ $config['index_page'] = 'index.php';
 |
 | WARNING: If you set this to 'PATH_INFO', URIs will always be URL-decoded!
 */
-$config['uri_protocol']	= 'REQUEST_URI';
+
+// If all URLs redirect to homepage, uncomment line below
+// $_SERVER['PATH_INFO'] = $_SERVER['ORIG_PATH_INFO'];
+
+$config['uri_protocol']	= 'PATH_INFO';
 
 /*
 |--------------------------------------------------------------------------
@@ -72,7 +77,7 @@ $config['url_suffix'] = '';
 | than english.
 |
 */
-$config['language']	= 'english';
+$config['language'] = 'english';
 
 /*
 |--------------------------------------------------------------------------
@@ -212,7 +217,7 @@ $config['directory_trigger'] = 'd';
 | your log files will fill up very fast.
 |
 */
-$config['log_threshold'] = 0;
+$config['log_threshold'] = 1;
 
 /*
 |--------------------------------------------------------------------------

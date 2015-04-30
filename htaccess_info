@@ -1,0 +1,13 @@
+RewriteEngine On
+#RewriteCond $1 !^(index\.php|images|robots\.txt)
+#RewriteRule ^(.*)$ /index.php/$1 [L]
+
+# condition: if url does not start with index.php, assets or robots -> rewrite
+RewriteCond $1 !^(index\.php|assets|robots\.txt)
+
+# rewrite: start with any character (.) zero or more (*) times except whiteline and 
+#   ends with any character (.) zero or more (*) times except whiteline.
+# QSA (Query String Append) means that if there's a query string passed with the original 
+#   URL, it will be appended to the rewrite (olle?p=1 will be rewritten as index.php?url=olle&p=1.
+# L means if the rule matches, don't process any more RewriteRules below this one.
+RewriteRule ^(.*)$ index.php/$1 [L,QSA]

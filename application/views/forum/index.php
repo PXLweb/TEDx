@@ -1,11 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 ?>
+
 <?php
 // $page_title will be used in <title></title> inside forum-header.php
 $page_title = basename(__FILE__, ".php");
 
-// includes helpers/bootstrap-includes.php
 require 'application/views/layout_components/forum-header.php';
 ?>
 
