@@ -9,7 +9,7 @@
         <meta name="author" content="">
         <link rel="icon" href="../../favicon.ico">
 
-        <title>Signin Template for Bootstrap</title>
+        <title>TEDx inloggen</title>
 
         <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/bootstrap.css'); ?>" />
         <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/bootstrap-theme.css'); ?>" />
@@ -27,27 +27,32 @@
     </head>
 
     <body>
-
         <div class="container">
+            <form class="form-signin" method="post" action="<?php echo base_url() . 'login/validate' ?>">
+                <h2 class="form-signin-heading">
+                    <?php echo $lang->getForm_header(); ?>
+                </h2>
+                <label for="inputEmail" class="sr-only">
+                    <?php echo $lang->getEmail_placeholder(); ?>
+                </label>
 
-            <form class="form-signin">
-                <h2 class="form-signin-heading">Please sign in</h2>
-                <label for="inputEmail" class="sr-only">Email address</label>
-                <input type="email" id="inputEmail" class="form-control" placeholder="Email address" required autofocus>
-                <label for="inputPassword" class="sr-only">Password</label>
-                <input type="password" id="inputPassword" class="form-control" placeholder="Password" required>
+                <input type="email" id="inputEmail" name="inputEmail" class="form-control" placeholder="<?php echo $lang->getEmail_placeholder(); ?>" required autofocus>
+
+                <label for="inputPassword" class="sr-only">
+                    <?php echo $lang->getPassword_placeholder(); ?>
+                </label>
+
+                <input type="password" id="inputPassword" name="inputPassword" class="form-control" placeholder="<?php echo $lang->getPassword_placeholder(); ?>" required>
                 <div class="checkbox">
                     <label>
-                        <input type="checkbox" value="remember-me"> Remember me
+                        <input type="checkbox" value="remember-me"> <?php echo $lang->getRemember_me(); ?>
                     </label>
                 </div>
-                <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+                <button class="btn btn-lg btn-primary btn-block" type="submit"><?php echo $lang->getSignin_button(); ?></button>
             </form>
-
         </div> <!-- /container -->
 
-
         <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
+        <script src="<?php echo base_url('assets/js/ie10-viewport-bug-workaround.js'); ?>"></script>
     </body>
 </html>

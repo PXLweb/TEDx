@@ -52,6 +52,7 @@ $config['index_page'] = '';
 // If all URLs redirect to homepage, uncomment line below
 // $_SERVER['PATH_INFO'] = $_SERVER['ORIG_PATH_INFO'];
 
+//$config['uri_protocol']	= 'PATH_INFO';
 $config['uri_protocol']	= 'PATH_INFO';
 
 /*
