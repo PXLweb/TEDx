@@ -12,6 +12,7 @@ class Register_nl {
 
     private $organization = org;
     private $pageTitle = "Registreren";
+    private $language = "nl";
     private $formHeader = "Registreren";
     private $userName = "Gebruikersnaam";
     private $userNameWarning = "Geen geldige gebruikersnaam";
@@ -38,6 +39,15 @@ class Register_nl {
         $this->roles['Author'] = 'Auteur';
         $this->roles['Moderator'] = 'Moderator';
         $this->roles['Administrator'] = 'Administrator';
+    }
+
+    public function getLanguage() {
+        return $this->language;
+    }
+
+    public function setLanguagen($language) {
+        $this->language = $language;
+        return $this;
     }
 
     public function getOrganization() {

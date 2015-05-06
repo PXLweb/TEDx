@@ -1,22 +1,27 @@
-<?php
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
-
+<!-- http://localhost/TEDx/registreren -->
 <!DOCTYPE html>
-<html>
+<html <?php echo 'lang="' . $lang->getLanguage() . '" '; ?> >
     <head>
-        <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/bootstrap.css'); ?>" />
-        <link rel="stylesheet" href="<?php echo base_url('assets/dist/css/bootstrap-theme.css'); ?>" />
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript" ></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js" type="text/javascript" ></script>
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-        <meta name="description" content="A short description." />
-        <meta name="keywords" content="put, keywords, here" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title><?php echo $page_title; ?></title>
-        <link rel="stylesheet" href="assets/css/forum.css" type="text/css" />
+        <title><?php echo $lang->getPageTitle(); ?></title>
+        <link rel="icon" href="../../favicon.ico">
+        <link rel="stylesheet" href="<?php echo site_url('assets/dist/css/bootstrap.css'); ?>" />
+        <link rel="stylesheet" href="<?php echo site_url('assets/dist/css/bootstrap-theme.css'); ?>" />
+        <?php
+        if (isset($cssLinks)) {
+            echo '<link href="' . $cssLinks . '" rel="stylesheet" />';
+        }
+        ?>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <?php
+        if (isset($styleTagContent)) {
+            echo '<style>' . $cssStyleTagContent . '</style>';
+        }
+        ?>
     </head>
+
     <body>
-        <div  class="container">
-            <?php require 'application/views/layout_components/forum-navbar.php'; ?>
-            <div id="content">
