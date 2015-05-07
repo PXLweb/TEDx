@@ -8,8 +8,12 @@
         </style>
     </head>
     <body>
+        <h1>Geregistreerd :)</h1>
         <?php
+        if (isset($post)) {
             var_dump($post);
+        }
         ?>
+        
     </body>
 </html>

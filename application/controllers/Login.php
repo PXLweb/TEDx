@@ -5,10 +5,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Login extends CI_Controller {
 
     public function index() {
-        $this->load->model('lang/Login_nl');
-        $dutch = new Login_nl();
-        $data['lang'] = $dutch;
-        $this->load->view('login', $data);
+        $this->load->model('managers/DataGenerator');
+        $data = (new DataGenerator)->getViewData('login', 'nl');
+        $this->load->view('layout_components/header', $data);
+        $this->load->view('login');
+        $this->load->view('layout_components/footer');
     }
 
     public function validate() {

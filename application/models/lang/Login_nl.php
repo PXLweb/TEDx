@@ -7,7 +7,11 @@ include $_SERVER['DOCUMENT_ROOT'] . "/tedx/application/models/GlobalVars.php";
  *
  * @author Kristof
  */
-class Login_nl {
+//include $_SERVER['DOCUMENT_ROOT'] . "/tedx/application/models/GlobalVars.php";
+//DEFINE('org', GlobalVars::$statOrganization); // contains 'TEDx'
+
+class Login_nl extends CI_Model{
+
     private $form_header = "Inloggen";
     private $email_placeholder = "E-mailadres";
     private $email_warning = "Geef een e-mailadres in";
@@ -15,6 +19,35 @@ class Login_nl {
     private $password_warning = "Geef een paswoord in";
     private $remember_me = "Onthoud mij";
     private $signin_button = "Log in";
+//    private $organization = org;
+    private $pageTitle = "Inloggen";
+    private $language = "nl";
+    private $userName = "Gebruikersnaam";
+    private $userNameWarning = "Geen geldige gebruikersnaam";
+    private $email = "E-mailadres";
+    private $emailWarning = "Geen geldig e-mailadres";
+    private $pwd = "Paswoord";
+    private $repeatPwd = "Paswoord opnieuw";
+    private $minimalPwdCharacters = 'Minimaal 6 characters';
+    private $pwdWarning = "Geef een geldig passwoord in";
+    private $role = "Kies een rol";
+    private $roles;
+    private $rememberMe = "Onthoud mij";
+
+    public function __construct() {
+        parent::__construct();
+        $this->load->model('classes/Role');
+        $this->roles = (new Role)->getRoles();
+    }
+
+//    public function getOrganization() {
+//        return $this->organization;
+//    }
+//
+//    public function setOrganization($organization) {
+//        $this->organization = $organization;
+//        return $this;
+//    }
 
     public function getForm_header() {
         return $this->form_header;
@@ -76,6 +109,123 @@ class Login_nl {
 
     public function setSignin_button($signin_button) {
         $this->signin_button = $signin_button;
+        return $this;
+    }
+
+    public function getPageTitle() {
+        return $this->pageTitle;
+    }
+
+    public function setPageTitle($pageTitle) {
+        $this->pageTitle = $pageTitle;
+        return $this;
+    }
+
+    public function getLanguage() {
+        return $this->language;
+    }
+
+    public function setLanguage($language) {
+        $this->language = $language;
+        return $this;
+    }
+
+    public function getUserName() {
+        return $this->userName;
+    }
+
+    public function setUserName($userName) {
+        $this->userName = $userName;
+        return $this;
+    }
+
+    public function getUserNameWarning() {
+        return $this->userNameWarning;
+    }
+
+    public function setUserNameWarning($userNameWarning) {
+        $this->userNameWarning = $userNameWarning;
+        return $this;
+    }
+
+    public function getEmail() {
+        return $this->email;
+    }
+
+    public function setEmail($email) {
+        $this->email = $email;
+        return $this;
+    }
+
+    public function getEmailWarning() {
+        return $this->emailWarning;
+    }
+
+    public function setEmailWarning($emailWarning) {
+        $this->emailWarning = $emailWarning;
+        return $this;
+    }
+
+    public function getPwd() {
+        return $this->pwd;
+    }
+
+    public function setPwd($pwd) {
+        $this->pwd = $pwd;
+        return $this;
+    }
+
+    public function getRepeatPwd() {
+        return $this->repeatPwd;
+    }
+
+    public function setRepeatPwd($repeatPwd) {
+        $this->repeatPwd = $repeatPwd;
+        return $this;
+    }
+
+    public function getMinimalPwdCharacters() {
+        return $this->minimalPwdCharacters;
+    }
+
+    public function setMinimalPwdCharacters($minimalPwdCharacters) {
+        $this->minimalPwdCharacters = $minimalPwdCharacters;
+        return $this;
+    }
+
+    public function getPwdWarning() {
+        return $this->pwdWarning;
+    }
+
+    public function setPwdWarning($pwdWarning) {
+        $this->pwdWarning = $pwdWarning;
+        return $this;
+    }
+
+    public function getRole() {
+        return $this->role;
+    }
+
+    public function setRole($role) {
+        $this->role = $role;
+        return $this;
+    }
+
+    public function getRoles() {
+        return $this->roles;
+    }
+
+    public function setRoles($roles) {
+        $this->roles = $roles;
+        return $this;
+    }
+
+    public function getRememberMe() {
+        return $this->rememberMe;
+    }
+
+    public function setRememberMe($rememberMe) {
+        $this->rememberMe = $rememberMe;
         return $this;
     }
 

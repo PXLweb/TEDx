@@ -5,12 +5,21 @@
  *
  * @author Kristof
  */
-class Role {
+class Role extends CI_Model{
 
     protected $permissions;
 
-    protected function __construct() {
+    public function __construct() {
+        parent::__construct();
         $this->permissions = array();
+    }
+    
+    public function getRoles(){
+        $this->load->database();
+        $this->db->select('role_name');
+        $result = $this->db->get('roles');
+        
+        return $result;
     }
 
     // return a role object with associated permissions

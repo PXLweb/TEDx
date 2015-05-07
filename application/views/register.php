@@ -17,9 +17,6 @@
 
         <?php 
         echo '<span style="color: #A94442; font-weight: bold;">' . validation_errors() . '</span>';
-//        if (isset($errors)) {
-//            echo '<div class="alert alert-warning">' . $errors . '</div>';
-//        }
         ?>
 
         <!--Username-->
