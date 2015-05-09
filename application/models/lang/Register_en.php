@@ -1,14 +1,15 @@
 <?php
+
 /**
  * Description of signin_dutch
  *
  * @author Kristof
  */
-class Register_nl {
+class Register_en {
 
     private $organization = 'TEDx';
     private $pageTitle = "Registreren";
-    private $language = "nl";
+    private $language = "en";
     private $formHeader = "Registreren";
     private $userName = "Gebruikersnaam";
     private $userNameWarning = "Geen geldige gebruikersnaam";

@@ -12,65 +12,111 @@ class UserManager extends CI_Model {
         $this->load->database();
     }
 
-    function create() {
-        $userData = $this->createUserData();
+    function create($userData) {
+        // Role will be stripped from the userData array for two purposes.
+        // 1. We need to know the role for the user_role table in the database.
+        // 2. The role_name key-value pair would cause an error on insertion.
+        $role = $this->extractRole($userData);
+        $roleId = $this->getRoleId($role, $userData['lang']);
 
-        if ($this->db->insert('users', $userData)) {
-            return TRUE;
+        // Create user
+        $this->db->insert('users', $userData);
+        $userId = $this->db->insert_id();
+        // Logging
+        $insertResult['userInsert'] = $this->db->affected_rows();
+
+        // Create role insertion data
+        $roleData['user_id'] = $userId;
+        $roleData['role_id'] = $roleId;
+        $this->db->insert('user_role', $roleData);
+        // Logging
+        $insertResult['roleInsert'] = $this->db->affected_rows();
+        return $insertResult;
+    }
+
+    function extractRole(&$userData) {
+        $role = $userData['role_name'];
+        unset($userData['role_name']);
+        return $role;
+    }
+
+    function getRoleId($roleValue, $lang) {
+        $role = $this->translateRole($roleValue, $lang);
+        $this->db->select('role_id');
+        $this->db->where('role_name', $role);
+        $query = $this->db->get('roles');
+        return $query->row()->role_id;
+    }
+
+    function translateRole($role, $lang) {
+        $formData;
+        switch ($lang) {
+            case 'nl':
+                $this->load->model('lang/Register_nl');
+                $formData = new Register_nl();
+                break;
+            case 'en':
+                $this->load->model('lang/Register_en');
+                $formData = new Register_en();
+                break;
+            default:
+                $this->load->model('lang/Register_nl');
+                $formData = new Register_nl();
+                break;
+        }
+        
+        $roles = $formData->getRoles();
+        foreach ($roles as $row) {
+            if ($row == $role) {
+                $translatedRole = key($roles);
+            }
+        }
+        return $translatedRole;
+    }
+
+    function isValid($userNameOrEmail, $password) {
+        $this->db->where("username = '" . $userNameOrEmail .
+                "' OR email = '" . $userNameOrEmail . "'");
+        $query = $this->db->get('users');
+        if ($query->num_rows() == 1) {
+            $passwordDB = $query->row()->password;
+            if (password_verify($password, $passwordDB)) {
+                return TRUE;
+            } else {
+                return FALSE;
+            }
         } else {
             return FALSE;
         }
     }
 
-    function createUserData() {
-//        $options = [
-//            'cost' => 11,
-//            'salt' => bin2hex(mcrypt_create_iv(36, MCRYPT_DEV_URANDOM))
-//        ];
-
-        $userData = [
-            'username' => $this->input->post('userName'),
-            'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT),
-            'email' => $this->input->post('email'),
-            'firstname' => $this->input->post('firstName'),
-            'lastname' => $this->input->post('lastName'),
-            'telephone' => $this->input->post('tel'),
-            'cellphone' => $this->input->post('cell'),
-            'creation_date' => date("Y-m-d H:i:s")
-        ];
-
-        return $userData;
-    }
-
-    function isValid($user, $pwd) {
-        $password = password_hash($pwd, PASSWORD_BCRYPT);
+    function exists($user) {
         $this->db->where('username', $user);
-        $this->db->where('password', $password);
-        $result = $this->db->get('users');
+        $query = $this->db->get('users');
 
-        if ($result->num_rows() == 1) {
+        if ($query->num_rows() == 0) {
             return TRUE;
         } else {
             return FALSE;
         }
     }
 
-    function userExists() {
-        $this->db->where('username', $this->input->post('userName'));
-        $result = $this->db->get('users');
+    function userExists($user) {
+        $this->db->where('username', $user);
+        $query = $this->db->get('users');
 
-        if ($result->num_rows() > 0) {
+        if ($query->num_rows() == 1) {
             return TRUE;
         } else {
             return FALSE;
         }
     }
 
-    function emailExists() {
-        $this->db->where('email', $this->input->post('email'));
-        $result = $this->db->get('users');
+    function emailExists($email) {
+        $this->db->where('email', $email);
+        $query = $this->db->get('users');
 
-        if ($result->num_rows() > 0) {
+        if ($query->num_rows() == 1) {
             return TRUE;
         } else {
             return FALSE;

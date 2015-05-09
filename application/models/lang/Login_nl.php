@@ -1,35 +1,26 @@
 <?php
 
-include $_SERVER['DOCUMENT_ROOT'] . "/tedx/application/models/GlobalVars.php";
+//include $_SERVER['DOCUMENT_ROOT'] . "/tedx/application/models/GlobalVars.php";
 
 /**
  * Description of signin_dutch
  *
  * @author Kristof
  */
-//include $_SERVER['DOCUMENT_ROOT'] . "/tedx/application/models/GlobalVars.php";
-//DEFINE('org', GlobalVars::$statOrganization); // contains 'TEDx'
+class Login_nl extends CI_Model {
 
-class Login_nl extends CI_Model{
-
-    private $form_header = "Inloggen";
-    private $email_placeholder = "E-mailadres";
-    private $email_warning = "Geef een e-mailadres in";
-    private $password_placeholder = "Paswoord";
-    private $password_warning = "Geef een paswoord in";
-    private $remember_me = "Onthoud mij";
-    private $signin_button = "Log in";
-//    private $organization = org;
+    private $formHeader = "Inloggen";
+    private $loginButton = "Log in";
     private $pageTitle = "Inloggen";
     private $language = "nl";
-    private $userName = "Gebruikersnaam";
-    private $userNameWarning = "Geen geldige gebruikersnaam";
+    private $userNameOrEmail = "Gebruikersnaam of e-mailadres";
+    private $userNameOrEmailWarning = "Geen geldige gebruikersnaam";
     private $email = "E-mailadres";
     private $emailWarning = "Geen geldig e-mailadres";
-    private $pwd = "Paswoord";
-    private $repeatPwd = "Paswoord opnieuw";
-    private $minimalPwdCharacters = 'Minimaal 6 characters';
-    private $pwdWarning = "Geef een geldig passwoord in";
+    private $password = "Paswoord";
+    private $repeatPassword = "Paswoord opnieuw";
+    private $minimalPasswordCharacters = 'Minimaal 6 characters';
+    private $passwordWarning = "Geef een geldig passwoord in";
     private $role = "Kies een rol";
     private $roles;
     private $rememberMe = "Onthoud mij";
@@ -40,75 +31,21 @@ class Login_nl extends CI_Model{
         $this->roles = (new Role)->getRoles();
     }
 
-//    public function getOrganization() {
-//        return $this->organization;
-//    }
-//
-//    public function setOrganization($organization) {
-//        $this->organization = $organization;
-//        return $this;
-//    }
-
-    public function getForm_header() {
-        return $this->form_header;
+    public function getFormHeader() {
+        return $this->formHeader;
     }
 
-    public function setForm_header($form_header) {
-        $this->form_header = $form_header;
+    public function setFormHeader($formHeader) {
+        $this->formHeader = $formHeader;
         return $this;
     }
 
-    public function getEmail_placeholder() {
-        return $this->email_placeholder;
+    public function getLoginButton() {
+        return $this->loginButton;
     }
 
-    public function setEmail_placeholder($email_placeholder) {
-        $this->email_placeholder = $email_placeholder;
-        return $this;
-    }
-
-    public function getEmail_warning() {
-        return $this->email_warning;
-    }
-
-    public function setEmail_warning($email_warning) {
-        $this->email_warning = $email_warning;
-        return $this;
-    }
-
-    public function getPassword_placeholder() {
-        return $this->password_placeholder;
-    }
-
-    public function setPassword_placeholder($password_placeholder) {
-        $this->password_placeholder = $password_placeholder;
-        return $this;
-    }
-
-    public function getPassword_warning() {
-        return $this->password_warning;
-    }
-
-    public function setPassword_warning($password_warning) {
-        $this->password_warning = $password_warning;
-        return $this;
-    }
-
-    public function getRemember_me() {
-        return $this->remember_me;
-    }
-
-    public function setRemember_me($remember_me) {
-        $this->remember_me = $remember_me;
-        return $this;
-    }
-
-    public function getSignin_button() {
-        return $this->signin_button;
-    }
-
-    public function setSignin_button($signin_button) {
-        $this->signin_button = $signin_button;
+    public function setLoginButton($loginButton) {
+        $this->loginButton = $loginButton;
         return $this;
     }
 
@@ -130,21 +67,21 @@ class Login_nl extends CI_Model{
         return $this;
     }
 
-    public function getUserName() {
-        return $this->userName;
+    public function getUserNameOrEmail() {
+        return $this->userNameOrEmail;
     }
 
-    public function setUserName($userName) {
-        $this->userName = $userName;
+    public function setUserNameOrEmail($userNameOrEmail) {
+        $this->userNameOrEmail = $userNameOrEmail;
         return $this;
     }
 
-    public function getUserNameWarning() {
-        return $this->userNameWarning;
+    public function getUserNameOrEmailWarning() {
+        return $this->userNameOrEmailWarning;
     }
 
-    public function setUserNameWarning($userNameWarning) {
-        $this->userNameWarning = $userNameWarning;
+    public function setUserNameOrEmailWarning($userNameOrEmailWarning) {
+        $this->userNameOrEmailWarning = $userNameOrEmailWarning;
         return $this;
     }
 
@@ -166,39 +103,39 @@ class Login_nl extends CI_Model{
         return $this;
     }
 
-    public function getPwd() {
-        return $this->pwd;
+    public function getPassword() {
+        return $this->password;
     }
 
-    public function setPwd($pwd) {
-        $this->pwd = $pwd;
+    public function setPassword($password) {
+        $this->password = $password;
         return $this;
     }
 
-    public function getRepeatPwd() {
-        return $this->repeatPwd;
+    public function getRepeatPassword() {
+        return $this->repeatPassword;
     }
 
-    public function setRepeatPwd($repeatPwd) {
-        $this->repeatPwd = $repeatPwd;
+    public function setRepeatPassword($repeatPassword) {
+        $this->repeatPassword = $repeatPassword;
         return $this;
     }
 
-    public function getMinimalPwdCharacters() {
-        return $this->minimalPwdCharacters;
+    public function getMinimalPasswordCharacters() {
+        return $this->minimalPasswordCharacters;
     }
 
-    public function setMinimalPwdCharacters($minimalPwdCharacters) {
-        $this->minimalPwdCharacters = $minimalPwdCharacters;
+    public function setMinimalPasswordCharacters($minimalPasswordCharacters) {
+        $this->minimalPasswordCharacters = $minimalPasswordCharacters;
         return $this;
     }
 
-    public function getPwdWarning() {
-        return $this->pwdWarning;
+    public function getPasswordWarning() {
+        return $this->passwordWarning;
     }
 
-    public function setPwdWarning($pwdWarning) {
-        $this->pwdWarning = $pwdWarning;
+    public function setPasswordWarning($passwordWarning) {
+        $this->passwordWarning = $passwordWarning;
         return $this;
     }
 

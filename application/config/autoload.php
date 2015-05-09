@@ -88,6 +88,9 @@ $autoload['drivers'] = array();
 |	$autoload['helper'] = array('url', 'file');
 */
 
+// url makes it possible fe to use site_url('jos') which results in baseUrl + 'jos' (http://localhost/tedx/jos.
+// form enables form_open, set_value etc.
+
 $autoload['helper'] = array('url', 'form');
 
 

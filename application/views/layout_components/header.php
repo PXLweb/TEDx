@@ -1,4 +1,9 @@
 <!-- http://localhost/TEDx/registreren -->
+<?php 
+if(!isset($_SESSION)){
+    session_start();
+}
+?>
 <!DOCTYPE html>
 <html <?php echo 'lang="' . $lang->getLanguage() . '" '; ?> >
     <head>

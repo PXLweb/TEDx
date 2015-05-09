@@ -1,5 +1,6 @@
 <div class="background-img">
     <div class="container">
+        <!--Start form-->
         <?php
         // form_open(<action>, <array with attributes>) is a CodeIgniter helper class
         echo form_open('registreren/uitvoeren', [
@@ -10,34 +11,42 @@
         ]);
         ?>
 
-        <!--Header-->
+        <!--Form header-->
         <h2 class="form-signin-heading">
             <?php echo $lang->getFormHeader(); ?>
         </h2>
 
-        <?php 
-        echo '<span style="color: #A94442; font-weight: bold;">' . validation_errors() . '</span>';
+        <!--Errors (if there are error)-->
+        <?php
+        echo '<span style="color: #A94442; font-weight: bold;">';
+        if (isset($userExistsError)) {
+            echo $userExistsError . '<br />';
+        }
+        if (isset($emailExistsError)) {
+            echo $emailExistsError;
+        }
+        echo '<div class="help-block with-errors"></div></span>';
         ?>
 
-        <!--Username-->
+        <!--Username input-->
         <div class="form-group"> 
             <label for="userName" class="sr-only">
-            <?php echo $lang->getUserName(); ?>
+                <?php echo $lang->getUserName(); ?>
             </label>
             <input type="text" id="userName" name="userName" class="form-control" placeholder="<?php echo $lang->getUserName(); ?>" data-error="<?php echo $lang->getUserNameWarning(); ?>" required autofocus>
             <div class="help-block with-errors"></div>
         </div>
 
-        <!--E-mail-->
+        <!--E-mail input-->
         <div class="form-group"> 
             <label for="email" class="sr-only">
-<?php echo $lang->getEmail(); ?>
+                <?php echo $lang->getEmail(); ?>
             </label>
             <input type="email" id="email" name="email" class="form-control" data-error="<?php echo $lang->getEmailWarning(); ?>" placeholder="<?php echo $lang->getEmail(); ?>" required>
             <div class="help-block with-errors"></div>
         </div>
 
-        <!--Password-->
+        <!--Password input-->
         <div class="form-group">
             <label for="password" class="sr-only control-label"></label>
             <div class="form-group">
@@ -50,48 +59,53 @@
             </div>
         </div>
 
-        <!--Firstname-->
+        <!--Firstname input-->
         <label for="firstName" class="sr-only">
-<?php echo $lang->getFirstName(); ?>
+            <?php echo $lang->getFirstName(); ?>
         </label>
         <input type="text" id="firstName" name="firstName" class="form-control no-help-block" placeholder="<?php echo $lang->getFirstName(); ?>">
         <div class="help-block with-errors"></div>
 
-        <!--Lastname-->
+        <!--Lastname input-->
         <label for="lastName" class="sr-only">
-<?php echo $lang->getLastName(); ?>
+            <?php echo $lang->getLastName(); ?>
         </label>
         <input type="text" id="lastName" name="lastName" class="form-control" placeholder="<?php echo $lang->getLastName(); ?>">
         <div class="help-block with-errors"></div>
 
-        <!--Tel-->
+        <!--Tel input-->
         <label for="tel" class="sr-only">
-<?php echo $lang->getTel(); ?>
+            <?php echo $lang->getTel(); ?>
         </label>
         <input type="text" id="tel" name="tel" class="form-control" placeholder="<?php echo $lang->getTel(); ?>">
         <div class="help-block with-errors"></div>
 
-        <!--Cell-->
+        <!--Cell input-->
         <label for="cell" class="sr-only">
-<?php echo $lang->getCell(); ?>
+            <?php echo $lang->getCell(); ?>
         </label>
         <input type="text" id="cell" name="cell" class="form-control" placeholder="<?php echo $lang->getCell(); ?>">
         <div class="help-block with-errors"></div>
 
-        <!--Role-->
+        <!--Role input-->
         <div class="form-group">
             <select class="form-control" id="role" name="role">
                 <?php foreach ($lang->getRoles() as $role): ?>
                     <option><?= $role ?></option>
-<?php endforeach; ?>
+                <?php endforeach; ?>
             </select>
         </div>
 
-        <!--RememberMe-->
+        <!--RememberMe input-->
         <div class="checkbox">
             <label>
-                <input type="checkbox" name="rememberMe" value="rememberMe"> <?php echo $lang->getRememberMe(); ?>
+                <input type="checkbox" name="rememberMe"> <?php echo $lang->getRememberMe(); ?>
             </label>
+        </div>
+        
+                <!--Hidden input-->
+        <div class="hide">
+                <input type="text" name="language" value="<?php echo $lang->getLanguage(); ?>">
         </div>
 
         <!--Submit-->

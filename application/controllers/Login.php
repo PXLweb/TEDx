@@ -12,18 +12,18 @@ class Login extends CI_Controller {
         $this->load->view('layout_components/footer');
     }
 
-    public function validate() {
-        // returns true when inputEmail and inputPassword contain a value
-        if ($this->input->post('inputEmail') && $this->input->post('inputPassword')) {
-            $user = $this->input->post('inputEmail');
-            $password = $this->input->post('inputPassword');
-
-            $this->load->model('Managers/LoginManager');
-            $loginManager = new LoginManager();
-            if ($loginManager->isValid($user, $password)) {
-                redirect('/login/loggedin');
-            } else {
-                redirect('/login/index');
+    public function valideren() {
+        // returns true when inputEmail and inputPassword contain a value, if not,
+        // an error is added to $errors (can 
+        if ($this->input->post('userNameOrEmail') && $this->input->post('password')) {
+            $userNameOrEmail = $this->input->post('userNameOrEmail');
+            $password = $this->input->post('password');
+            $this->load->model('managers/UserManager');
+            if ((new UserManager())->isValid($userNameOrEmail, $password)) {
+                
+                echo 'logged in';
+            } else{
+                echo 'fail';
             }
         }
     }

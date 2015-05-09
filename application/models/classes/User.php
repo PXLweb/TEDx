@@ -7,14 +7,18 @@
  */
 class User {
 
-    private $user_id;
-    private $username;
-    private $password;
-    private $email;
-    private $creation_date;
-    private $user_level;
-    private $location_profile_pic;
-    private $roles;
+    public $user_id;
+    public $username;
+    public $password;
+    public $email;
+    public $firstname;
+    public $lastname;
+    public $telephone;
+    public $cellphone;
+    public $creation_date;
+    public $user_level;
+    public $location_profile_pic;
+    public $roles;
 
     public function __construct() {
         
