@@ -9,6 +9,7 @@
  */
 class Login_nl extends CI_Model {
 
+    private $viewName = 'login';
     private $formHeader = "Inloggen";
     private $loginButton = "Log in";
     private $pageTitle = "Inloggen";
@@ -24,6 +25,15 @@ class Login_nl extends CI_Model {
     private $role = "Kies een rol";
     private $roles;
     private $rememberMe = "Onthoud mij";
+
+    public function getViewName() {
+        return $this->viewName;
+    }
+
+    public function setViewName($viewName) {
+        $this->viewName = $viewName;
+        return $this;
+    }
 
     public function __construct() {
         parent::__construct();

@@ -7,6 +7,8 @@
  */
 class UserManager extends CI_Model {
 
+    private $user;
+
     public function __construct() {
         parent::__construct();
         $this->load->database();
@@ -49,7 +51,7 @@ class UserManager extends CI_Model {
     }
 
     function translateRole($role, $lang) {
-        $formData;
+        $formData = NULL;
         switch ($lang) {
             case 'nl':
                 $this->load->model('lang/Register_nl');
@@ -64,7 +66,7 @@ class UserManager extends CI_Model {
                 $formData = new Register_nl();
                 break;
         }
-        
+
         $roles = $formData->getRoles();
         foreach ($roles as $row) {
             if ($row == $role) {
@@ -79,8 +81,8 @@ class UserManager extends CI_Model {
                 "' OR email = '" . $userNameOrEmail . "'");
         $query = $this->db->get('users');
         if ($query->num_rows() == 1) {
-            $passwordDB = $query->row()->password;
-            if (password_verify($password, $passwordDB)) {
+            if (password_verify($password, $query->row()->password)) {
+                $this->saveUser($query->row()); // Gives values to private $user.
                 return TRUE;
             } else {
                 return FALSE;
@@ -88,6 +90,32 @@ class UserManager extends CI_Model {
         } else {
             return FALSE;
         }
+    }
+
+    function saveUser($row) {
+        $this->user = [
+            'user_id' => $row->user_id,
+            'username' => $row->username,
+            'firstname' => $row->firstname,
+            'lastname' => $row->lastname,
+            'email' => $row->email,
+            'lang' => $row->lang
+        ];
+        $this->user['role_name'] = $this->getRoleName($this->user['user_id']);
+    }
+
+    function getRoleName($userId) {
+        $sql = 'SELECT role_name ' .
+                'FROM users as u ' .
+                'JOIN user_role AS ur ON u.user_id = ur.user_id ' .
+                'JOIN roles AS r ON ur.role_id = r.role_id ' .
+                "WHERE u.user_id = '" . $userId . "';";
+        $query = $this->db->query($sql);
+        return $query->row()->role_name;
+    }
+
+    function setSession() {
+        $this->session->set_userdata($this->user);
     }
 
     function exists($user) {

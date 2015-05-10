@@ -7,7 +7,7 @@
  */
 class Register_en {
 
-    private $organization = 'TEDx';
+    private $viewName = 'register';
     private $pageTitle = "Registreren";
     private $language = "en";
     private $formHeader = "Registreren";
@@ -38,6 +38,15 @@ class Register_en {
         $this->roles['Author'] = 'Auteur';
         $this->roles['Moderator'] = 'Moderator';
         $this->roles['Administrator'] = 'Administrator';
+    }
+
+    public function getViewName() {
+        return $this->viewName;
+    }
+
+    public function setViewName($viewName) {
+        $this->viewName = $viewName;
+        return $this;
     }
 
     public function getUserNameInUseWarning() {

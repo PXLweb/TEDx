@@ -19,21 +19,22 @@ class Login extends CI_Controller {
             $userNameOrEmail = $this->input->post('userNameOrEmail');
             $password = $this->input->post('password');
             $this->load->model('managers/UserManager');
-            if ((new UserManager())->isValid($userNameOrEmail, $password)) {
-                
+            $userManager = new UserManager();
+            // Returns an anonymous object representing a DB user row when the credentials are valid.
+            $user = $userManager->isValid($userNameOrEmail, $password);
+            if ($user) {
+                $userManager->setSession();
                 echo 'logged in';
+                echo var_dump($this->session->all_userdata());
             } else{
                 echo 'fail';
             }
+        } else {
+            echo 'fail';
         }
     }
 
     public function rememberMe() {
         
     }
-
-    public function loggedin() {
-        $this->load->view('loggedin');
-    }
-
 }

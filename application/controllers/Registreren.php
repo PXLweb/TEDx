@@ -45,6 +45,7 @@ class Registreren extends CI_Controller {
             // Inserts in 2 tables => users, user_role 
             $resultDoubleInsert = $this->userManager->create($this->userData);
             if ($resultDoubleInsert['userInsert'] == TRUE && $resultDoubleInsert['roleInsert'] == TRUE) {
+                
                 $this->load->view('registered');
             } else {
                 $this->loadIndexPage();

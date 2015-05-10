@@ -1,4 +1,3 @@
-<?php echo var_dump($this->session->all_userdata()); ?>
 <div class="container">
     <?php
     echo form_open('login/valideren', [
@@ -8,7 +7,6 @@
         'id' => 'myForm'
     ]);
     ?>
-    
         <h2 class="form-signin-heading">
             <?php echo $lang->getFormHeader(); ?>
         </h2>
@@ -35,3 +33,4 @@
         <!--Submit-->
         <button class="btn btn-lg btn-primary btn-block" type="submit"><?php echo $lang->getLoginButton(); ?></button>
     </form>
+</div> <!-- /container -->

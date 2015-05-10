@@ -13,7 +13,9 @@ if(!isset($_SESSION)){
         <link rel="stylesheet" href="<?php echo site_url('assets/dist/css/bootstrap-theme.css'); ?>" />
         <?php
         if (isset($cssLinks)) {
-            echo '<link href="' . $cssLinks . '" rel="stylesheet" />';
+            foreach($cssLinks as $link){
+                echo $link;
+            }
         }
         ?>
         <meta charset="utf-8">

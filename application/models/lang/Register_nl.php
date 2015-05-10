@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Description of signin_dutch
  *
@@ -6,7 +7,7 @@
  */
 class Register_nl {
 
-    private $organization = 'TEDx';
+    private $viewName = 'register';
     private $pageTitle = "Registreren";
     private $language = "nl";
     private $formHeader = "Registreren";
@@ -37,6 +38,15 @@ class Register_nl {
         $this->roles['Author'] = 'Auteur';
         $this->roles['Moderator'] = 'Moderator';
         $this->roles['Administrator'] = 'Administrator';
+    }
+
+    public function getViewName() {
+        return $this->viewName;
+    }
+
+    public function setViewName($viewName) {
+        $this->viewName = $viewName;
+        return $this;
     }
 
     public function getUserNameInUseWarning() {

@@ -8,6 +8,8 @@ include $_SERVER['DOCUMENT_ROOT'] . "/tedx/application/models/GlobalVars.php";
  * @author Kristof
  */
 class Login_en {
+
+    private $viewName = 'login';
     private $form_header = "Sign in";
     private $email_placeholder = "E-mail address";
     private $email_warning = "Enter your e-mail address";
@@ -15,6 +17,15 @@ class Login_en {
     private $password_warning = "Enter your password";
     private $remember_me = "Remember me";
     private $signin_button = "Sign in";
+
+    public function getViewName() {
+        return $this->viewName;
+    }
+
+    public function setViewName($viewName) {
+        $this->viewName = $viewName;
+        return $this;
+    }
 
     public function getForm_header() {
         return $this->form_header;
