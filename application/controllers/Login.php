@@ -4,10 +4,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
+    public function __construct() {
+        parent::__construct();
+    }
+
     public function index() {
         $this->load->model('managers/DataGenerator');
-        $data = (new DataGenerator)->getViewData('login', 'nl');
-        $this->load->view('layout_components/header', $data);
+        $dataGenerator = new DataGenerator();
+        $viewData = $dataGenerator->getViewData('login', 'nl');
+        $navData = $dataGenerator->getNavData('nl');
+        
+        $this->load->view('layout_components/header', $viewData);
+        $this->load->view('layout_components/navbar', $navData);
         $this->load->view('login');
         $this->load->view('layout_components/footer');
     }
@@ -26,7 +34,7 @@ class Login extends CI_Controller {
                 $userManager->setSession();
                 echo 'logged in';
                 echo var_dump($this->session->all_userdata());
-            } else{
+            } else {
                 echo 'fail';
             }
         } else {
@@ -37,4 +45,5 @@ class Login extends CI_Controller {
     public function rememberMe() {
         
     }
+
 }

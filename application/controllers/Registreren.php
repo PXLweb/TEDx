@@ -17,7 +17,16 @@ class Registreren extends CI_Controller {
     }
 
     public function index() {
-        $this->loadIndexPage();
+        $this->load->model('managers/DataGenerator');
+        $dataGenerator = new DataGenerator();
+        $viewData = $dataGenerator->getViewData('register', 'nl');
+        $navData = $dataGenerator->getNavData('nl');
+
+        $this->load->view('layout_components/header', $viewData);
+        $this->load->view('layout_components/navbar', $navData);
+        $this->load->view('register');
+        $this->load->view('layout_components/footer');
+        
     }
 
     function loadIndexPage() {
@@ -45,12 +54,12 @@ class Registreren extends CI_Controller {
             // Inserts in 2 tables => users, user_role 
             $resultDoubleInsert = $this->userManager->create($this->userData);
             if ($resultDoubleInsert['userInsert'] == TRUE && $resultDoubleInsert['roleInsert'] == TRUE) {
-                
+
                 $this->load->view('registered');
             } else {
                 $this->loadIndexPage();
             }
-        } else{
+        } else {
             $this->loadIndexPage();
         }
     }

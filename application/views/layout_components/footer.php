@@ -1,9 +1,9 @@
 <!--FOOTER-->
-<?php if($lang->getViewName() == 'home'){ ?>
-<footer class="footer">
-    <p class="pull-right"><a href="#">Back to top</a></p>
-    <p>&copy; <?php echo date("Y"); ?>  TEDx PXL &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-</footer>
+<?php if ($lang->getViewName() == 'home') { ?>
+    <footer class="footer">
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>&copy; <?php echo date("Y"); ?>  TEDx PXL &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+    </footer>
 <?php } ?>
 
 <!--SCRIPTS-->
@@ -18,9 +18,17 @@
 <script src="<?php echo site_url('assets/dist/js/jquery-1.11.3.js'); ?>" ></script>
 <script src="<?php echo site_url('assets/dist/js/jquery-2.1.3.js'); ?>" ></script>
 
-<?php if($lang->getViewName() == 'register' || $lang->getViewName() == 'login'){ ?>
-<script src="<?php echo site_url('assets/js/validator.js'); ?>"></script>
+<?php if ($lang->getViewName() == 'register' || $lang->getViewName() == 'login') { ?>
+    <script src="<?php echo site_url('assets/js/validator.js'); ?>"></script>
 <?php } ?>
+
+<!--This switches the active class for "nav a"-->
+<script type="text/javascript">
+    $(".nav a").on("click", function () {
+        $(".nav").find(".active").removeClass("active");
+        $(this).parent().addClass("active");
+    });
+</script>
 
 <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>

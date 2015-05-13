@@ -15,13 +15,13 @@ class Login_nl extends CI_Model {
     private $pageTitle = "Inloggen";
     private $language = "nl";
     private $userNameOrEmail = "Gebruikersnaam of e-mailadres";
-    private $userNameOrEmailWarning = "Geen geldige gebruikersnaam";
+    private $userNameOrEmailWarning = "Geen geldige gebruikersnaam.";
     private $email = "E-mailadres";
-    private $emailWarning = "Geen geldig e-mailadres";
+    private $emailWarning = "Geen geldig e-mailadres.";
     private $password = "Paswoord";
     private $repeatPassword = "Paswoord opnieuw";
-    private $minimalPasswordCharacters = 'Minimaal 6 characters';
-    private $passwordWarning = "Geef een geldig passwoord in";
+    private $minimalPasswordCharacters = 'Minimaal 6 characters.';
+    private $passwordWarning = "Geef een geldig passwoord in.";
     private $role = "Kies een rol";
     private $roles;
     private $rememberMe = "Onthoud mij";

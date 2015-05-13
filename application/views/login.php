@@ -1,4 +1,3 @@
-<?php echo var_dump($this->session->all_userdata()); ?>
 <div class="container">
     <?php
     echo form_open('login/valideren', [
@@ -8,30 +7,36 @@
         'id' => 'myForm'
     ]);
     ?>
-    
-        <h2 class="form-signin-heading">
-            <?php echo $lang->getFormHeader(); ?>
-        </h2>
 
-        <!--Username or e-mail-->
+    <h2 class="form-signin-heading">
+        <?php echo $lang->getFormHeader(); ?>
+    </h2>
+
+    <!--Username or e-mail-->
+    <div class="form-group"> 
         <label for="userNameOrEmail" class="sr-only">
             <?php echo $lang->getUserNameOrEmail(); ?>
         </label>
-        <input type="text" id="userNameOrEmail" name="userNameOrEmail" class="form-control" placeholder="<?php echo $lang->getUserNameOrEmail(); ?>" required autofocus />
+        <input type="text" id="userName" name="userNameOrEmail" class="form-control" placeholder="<?php echo $lang->getUserNameOrEmail(); ?>" data-error="<?php echo $lang->getUserNameOrEmailWarning(); ?>" required autofocus />
+        <div class="help-block with-errors"></div>
+    </div>
 
-        <!--Password-->
-        <label for="password" class="sr-only">
-            <?php echo $lang->getPassword(); ?>
+    <!--Password-->
+    <div class="form-group"> 
+    <label for="password" class="sr-only">
+        <?php echo $lang->getPassword(); ?>
+    </label>
+    <input type="password" id="password" name="password" class="form-control" placeholder="<?php echo $lang->getPassword(); ?>" data-error="<?php echo $lang->getPasswordWarning(); ?>" required />
+    <div class="help-block with-errors"></div>
+    </div>
+
+    <!--Remember me-->
+    <div class="checkbox">
+        <label>
+            <input type="checkbox" value="rememberMe"> <?php echo $lang->getRememberMe(); ?>
         </label>
-        <input type="password" id="password" name="password" class="form-control" placeholder="<?php echo $lang->getPassword(); ?>"  required />
+    </div>
 
-        <!--Remember me-->
-        <div class="checkbox">
-            <label>
-                <input type="checkbox" value="rememberMe"> <?php echo $lang->getRememberMe(); ?>
-            </label>
-        </div>
-        
-        <!--Submit-->
-        <button class="btn btn-lg btn-primary btn-block" type="submit"><?php echo $lang->getLoginButton(); ?></button>
-    </form>
+    <!--Submit-->
+    <button class="btn btn-lg btn-primary btn-block" type="submit"><?php echo $lang->getLoginButton(); ?></button>
+</form>
