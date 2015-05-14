@@ -12,7 +12,7 @@ class DataGenerator extends CI_Model {
 
         $cssLinkNav = site_url('assets/css/navbar.css');
         $data['cssLinks']['navbar'] = '<link rel="stylesheet" href="' . $cssLinkNav . '" />';
-        
+
         switch ($model) {
             case 'home':
                 $cssLinkHome = site_url('assets/css/home.css');

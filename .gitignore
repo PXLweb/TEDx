@@ -15,3 +15,6 @@ nbdist/
 nbactions.xml
 nb-configuration.xml
 .nb-gradle/
+
+# Custom additions
+application\config\database.php
