@@ -1,11 +1,3 @@
-<!--FOOTER-->
-<?php if ($lang->getViewName() == 'home') { ?>
-    <footer class="footer">
-        <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; <?php echo date("Y"); ?>  TEDx PXL &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
-    </footer>
-<?php } ?>
-
 <!--SCRIPTS-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript" ></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript" ></script>
@@ -37,5 +29,12 @@
 <![endif]-->
 
 </div><!-- /container -->
+
+<!--FOOTER-->
+<footer class="footer">
+    <p class="pull-right"><a href="#">Back to top</a></p>
+    <p>&copy; <?php echo date("Y"); ?>  TEDx PXL &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a></p>
+</footer>
 </body>
+
 </html>

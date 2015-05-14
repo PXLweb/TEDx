@@ -11,7 +11,9 @@ class DataGenerator extends CI_Model {
         $lang = strtolower($_lang);
 
         $cssLinkNav = site_url('assets/css/navbar.css');
+        $cssLinkFooter = site_url('assets/css/sticky-footer.css');
         $data['cssLinks']['navbar'] = '<link rel="stylesheet" href="' . $cssLinkNav . '" />';
+        $data['cssLinks']['navbar'] = '<link rel="stylesheet" href="' . $cssLinkFooter . '" />';
 
         switch ($model) {
             case 'home':
@@ -59,6 +61,10 @@ class DataGenerator extends CI_Model {
                 }
 
             case 'forum':
+//                $data['styleTagContent'] = '.navbar-wrapper{display: none;}';
+                $cssLinkForum = site_url('assets/css/forum.css');
+                $data['cssLinks']['forum'] = '<link rel="stylesheet" href="' . $cssLinkForum . '" />';
+                
                 if ($lang === 'nl') {
                     $this->load->model('lang/Forum_nl');
                     $data['lang'] = new Forum_nl();

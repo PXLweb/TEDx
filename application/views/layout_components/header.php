@@ -26,7 +26,7 @@ if(!isset($_SESSION)){
         <meta name="author" content="">
         <?php
         if (isset($styleTagContent)) {
-            echo '<style>' . $cssStyleTagContent . '</style>';
+            echo '<style>' . $styleTagContent . '</style>';
         }
         ?>
     </head>
