@@ -20,7 +20,7 @@ class Registreren extends CI_Controller {
         $this->load->model('managers/DataGenerator');
         $dataGenerator = new DataGenerator();
         $viewData = $dataGenerator->getViewData('register', 'nl');
-        $navData = $dataGenerator->getNavData('nl');
+        $navData = $dataGenerator->getViewData('navbar', 'nl');
 
         $this->load->view('layout_components/header', $viewData);
         $this->load->view('layout_components/navbar', $navData);

@@ -26,8 +26,7 @@ class DataGenerator extends CI_Model {
                     $this->load->model('lang/Navbar_en');
                     $data['navbar'] = new Navbar_en();
                     return $data;
-                } 
-                    else{
+                } else {
                     $this->load->model('lang/Navbar_nl');
                     $data['navbar'] = new Navbar_nl();
                     return $data;
@@ -91,28 +90,21 @@ class DataGenerator extends CI_Model {
                     return $data;
                 }
 
-            default:
-                return $data;
-        }
-    }
+            case 'posts':
+                $cssLinkPosts = site_url('assets/css/posts.css');
+                $data['cssLinks']['posts'] = '<link rel="stylesheet" href="' . $cssLinkPosts . '" />';
 
-    public function getNavData($_lang) {
-        $lang = strtolower($_lang);
-
-        switch ($lang) {
-            case 'nl':
-                $this->load->model('lang/Navbar_nl');
-                $data['navbar'] = new Navbar_nl();
-                return $data;
-
-            case 'en':
-                $this->load->model('lang/Navbar_en');
-                $data['navbar'] = new Navbar_en();
-                return $data;
+                if ($lang === 'nl') {
+                    $this->load->model('lang/Forum_nl');
+                    $data['lang'] = new Forum_nl();
+                    return $data;
+                } else if ($lang === 'en') {
+                    $this->load->model('lang/Forum_en');
+                    $data['lang'] = new Forum_en();
+                    return $data;
+                }
 
             default:
-                $this->load->model('lang/Navbar_nl');
-                $data['navbar'] = new Navbar_nl();
                 return $data;
         }
     }

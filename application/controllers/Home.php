@@ -12,7 +12,7 @@ class Home extends CI_Controller {
         $this->load->model('managers/DataGenerator');
         $dataGenerator = new DataGenerator();
         $this->viewDataHome = $dataGenerator->getViewData('home', 'nl');
-        $this->viewDataNav = $dataGenerator->getNavData('nl');
+        $this->viewDataNav = $dataGenerator->getViewData('navbar', 'nl');
     }
 
     public function index() {

@@ -12,7 +12,7 @@ class Contact extends CI_Controller {
         $this->load->model('managers/DataGenerator');
         $dataGenerator = new DataGenerator();
         $this->viewData = $dataGenerator->getViewData('home', 'nl');
-        $this->navData = $dataGenerator->getNavData('nl');
+        $this->navData = $dataGenerator->getViewData('navbar', 'nl');
     }
 
     public function index() {
