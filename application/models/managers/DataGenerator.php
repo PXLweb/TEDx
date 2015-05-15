@@ -10,12 +10,29 @@ class DataGenerator extends CI_Model {
         $model = strtolower($_model);
         $lang = strtolower($_lang);
 
-        $cssLinkNav = site_url('assets/css/navbar.css');
         $cssLinkFooter = site_url('assets/css/sticky-footer.css');
-        $data['cssLinks']['navbar'] = '<link rel="stylesheet" href="' . $cssLinkNav . '" />';
-        $data['cssLinks']['navbar'] = '<link rel="stylesheet" href="' . $cssLinkFooter . '" />';
+        $cssLinkGlobal = site_url('assets/css/global.css');
+        $data['cssLinks']['$cssLinkFooter'] = '<link rel="stylesheet" href="' . $cssLinkFooter . '" />';
+        $data['cssLinks']['global'] = '<link rel="stylesheet" href="' . $cssLinkGlobal . '" />';
 
         switch ($model) {
+            case 'header':
+                $this->load->model('lang/Global_nl');
+                $data['lang'] = new Global_nl();
+                return $data;
+
+            case 'navbar':
+                if ($lang === 'en') {
+                    $this->load->model('lang/Navbar_en');
+                    $data['navbar'] = new Navbar_en();
+                    return $data;
+                } 
+                    else{
+                    $this->load->model('lang/Navbar_nl');
+                    $data['navbar'] = new Navbar_nl();
+                    return $data;
+                }
+
             case 'home':
                 $cssLinkHome = site_url('assets/css/home.css');
                 $cssLinkCarousel = site_url('assets/css/carousel.css');
@@ -61,10 +78,9 @@ class DataGenerator extends CI_Model {
                 }
 
             case 'forum':
-//                $data['styleTagContent'] = '.navbar-wrapper{display: none;}';
                 $cssLinkForum = site_url('assets/css/forum.css');
                 $data['cssLinks']['forum'] = '<link rel="stylesheet" href="' . $cssLinkForum . '" />';
-                
+
                 if ($lang === 'nl') {
                     $this->load->model('lang/Forum_nl');
                     $data['lang'] = new Forum_nl();

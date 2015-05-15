@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="<?php echo site_url(); ?>"><?php echo $navbar->getBrandName(); ?></a>
+            <a class="navbar-brand" href="<?php echo $navbar->getHomeRoute(); ?>"><?php echo $navbar->getBrandName(); ?></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">
@@ -23,12 +23,14 @@
                         <li><a href="#">One more separated link</a></li>
                     </ul>
                 </li>
-                <li><a href="#"><?php echo $navbar->getMenuContact(); ?></a></li>
-                <li><a href="#"><?php echo $navbar->getMenuAbout(); ?></a></li>
-                <li><a href="<?php echo site_url('login'); ?>"><?php echo $navbar->getMenuLogin(); ?></a></li>
-                <li><a href="<?php echo site_url('registreren'); ?>"><?php echo $navbar->getMenuRegister(); ?></a></li>
-                <li></li>
+                <li><a href="<?php echo $navbar->getContactRoute(); ?>"><?php echo $navbar->getMenuContact(); ?></a></li>
+                <li><a href="<?php echo $navbar->getAboutRoute(); ?>"><?php echo $navbar->getMenuAbout(); ?></a></li>
+                <li><a href="<?php echo $navbar->getLoginRoute(); ?>"><?php echo $navbar->getMenuLogin(); ?></a></li>
+                <li><a href="<?php echo $navbar->getRegisterRoute(); ?>"><?php echo $navbar->getMenuRegister(); ?></a></li>
+                <li><a href="<?php echo $navbar->getForumRoute(); ?>"><?php echo $navbar->getMenuForum(); ?></a></li>
+                <li><a href="<?php echo $navbar->getEventsRoute(); ?>"><?php echo $navbar->getMenuEvents(); ?></a></li>
+                <li><a href="<?php echo $navbar->getProfileRoute(); ?>" class="pull-right hidden"></a></li>
             </ul>
         </div>
     </nav>
-</div>
+</div></div></div></div>

@@ -7,20 +7,11 @@
  *
  * @author Kristof
  */
-class Home_nl extends CI_Model {
+class Global_nl extends CI_Model {
 
-    private $viewName = 'home';
     private $pageTitle = 'TEDx';
     private $language = 'nl';
-
-    public function getViewName() {
-        return $this->viewName;
-    }
-
-    public function setViewName($viewName) {
-        $this->viewName = $viewName;
-        return $this;
-    }
+    private $viewName = '';
 
     public function getPageTitle() {
         return $this->pageTitle;
@@ -37,6 +28,15 @@ class Home_nl extends CI_Model {
 
     public function setLanguage($language) {
         $this->language = $language;
+        return $this;
+    }
+
+    public function getViewName() {
+        return $this->viewName;
+    }
+
+    public function setViewName($viewName) {
+        $this->viewName = $viewName;
         return $this;
     }
 
