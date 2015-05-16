@@ -18,8 +18,11 @@ class Events extends CI_Controller {
     public function index() {
         $this->load->view('layout_components/header', $this->viewData);
         $this->load->view('layout_components/navbar', $this->navData);
-        $this->load->view('events', $this->viewData);
+        $this->load->view('calendar', $this->viewData);
         $this->load->view('layout_components/footer');
     }
 
+    public function nieuw(){
+        echo($this->input->get());
+    }
 }
