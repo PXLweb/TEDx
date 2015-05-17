@@ -61,17 +61,25 @@ class Forum extends CI_Controller {
     }
 
     public function postComment() {
+        // Assemble row for posts table.
+        print_r($_POST);
         $postData = array(
-            'title' => $this->input->post('title'),
-            'content' => $this->input->post('title'),
             'topic_id' => $_SESSION['topicId'],
-            'posted_by' => 6    // 6 is the ID of anonymous
+            'title' => $this->input->post('title'),
+            'content' => $this->input->post('content'),
+            'guest_name' => $this->input->post('guest_name')
         );
+        if (NULL === $this->input->post('posted_by')) {
+            $postData['posted_by'] = 6; // Id of anonymous user.
+        } else {
+            $postData['posted_by'] = $this->input->post('posted_by');
+        }
+
         $insertedRows = $this->forumManager->postComment($postData);
-        if ($insertedRows != 1) {
-            redirect('forum/postError');
-        }else{
+        if ($insertedRows == 1) {
             redirect('forum/posts/' . $_SESSION['topicId']);
+        } else {
+            redirect('forum/postError');
         }
     }
 

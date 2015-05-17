@@ -40,10 +40,6 @@ class SessionManager extends CI_Model {
     }
 
     function setUser($user) {
-//        if (!(session_status() === PHP_SESSION_ACTIVE)) {
-//            session_start();
-//        }
-//        var_dump($user);
         $user['logged_in'] = TRUE;
         $_SESSION['user'] = $user;
     }
@@ -65,9 +61,6 @@ class SessionManager extends CI_Model {
         if (isset($_COOKIE['user_id'])) {
             $userId = filter_input(INPUT_COOKIE, 'user_id');
             $user = $this->userManager->getUserById($userId);
-
-//            echo 'var_dump($user); sessionmanager->loadSessionFromCookie()';
-//            var_dump($user);
 
             if ($user) {
                 $this->setUser($user[0]);

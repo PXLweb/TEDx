@@ -6,13 +6,20 @@
 
     <div class="row">
         <div class="col-sm-8 blog-main">
-            <?php foreach ($posts as $post): ?>
-                <div class="blog-post">
-                    <h2 class="blog-post-title"><?= $post['title'] ?></h2>
-                    <p class="blog-post-meta"><?= $post['date_time'] ?> door <a href="#"><?= $post['username'] ?></a></p> 
-                    <p><?= $post['content'] ?></p>
-                </div>   
-            <?php endforeach ?>
+            <?php
+            foreach ($posts as $post) {
+                echo '<div class="blog-post">';
+                echo '<h2 class="blog-post-title">' . $post['title'] . '</h2>';
+                echo '<p class="blog-post-meta">' . $post['date_time'];
+                if (isset($post['guest_name'])) {
+                    echo '<a href="#"> ' . $post['guest_name'] . '</a></p>';
+                } else {
+                    echo '<a href="#"> ' . $post['username'] . '</a></p>';
+                }
+                echo '<p>' . $post['content'] . '</p>';
+                echo '</div>';
+            }
+            ?>
 
             <nav>
                 <ul class="pager">
@@ -34,8 +41,8 @@
                 ?>
                 <!--Name-->
                 <div class="form-group">
-                    <label for="name"><?php echo $lang->getNameLabel(); ?></label>
-                    <input type="text" class="form-control" name="name" id="name" data-error="<?php echo $lang->getNameWarning(); ?>" required/>
+                    <label for="guest_name"><?php echo $lang->getNameLabel(); ?></label>
+                    <input type="text" class="form-control" name="guest_name" id="guest_name" data-error="<?php echo $lang->getNameWarning(); ?>" required/>
                     <div class="help-block with-errors"></div>
                 </div>
 
@@ -58,11 +65,11 @@
                     <input type="text" class="form-control" name="title" id="title"/>
                     <div class="help-block with-errors"></div>
                 </div>
-                
+
                 <!--Comment-->
                 <div class="form-group">
-                    <label for="comment"><?php echo $lang->getCommentLabel(); ?></label>
-                    <textarea rows="6" class="form-control" name="comment" id="comment" data-error="<?php echo $lang->getCommentWarning(); ?>" required></textarea>
+                    <label for="content"><?php echo $lang->getCommentLabel(); ?></label>
+                    <textarea rows="6" class="form-control" name="content" id="content" data-error="<?php echo $lang->getCommentWarning(); ?>" required></textarea>
                     <div class="help-block with-errors"></div>
                 </div>
 
