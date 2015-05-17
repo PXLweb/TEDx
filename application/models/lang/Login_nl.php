@@ -11,20 +11,34 @@ class Login_nl extends CI_Model {
 
     private $viewName = 'login';
     private $formHeader = "Inloggen";
-    private $loginButton = "Log in";
     private $pageTitle = "Inloggen";
     private $language = "nl";
     private $userNameOrEmail = "Gebruikersnaam of e-mailadres";
     private $userNameOrEmailWarning = "Geen geldige gebruikersnaam.";
+    private $tryAgain = 'Inloggen niet gelukt. Probeer opnieuw.';
     private $email = "E-mailadres";
     private $emailWarning = "Geen geldig e-mailadres.";
     private $password = "Paswoord";
     private $repeatPassword = "Paswoord opnieuw";
     private $minimalPasswordCharacters = 'Minimaal 6 characters.';
     private $passwordWarning = "Geef een geldig passwoord in.";
-    private $role = "Kies een rol";
-    private $roles;
     private $rememberMe = "Onthoud mij";
+    private $loginButton = "Log in";
+
+    public function __construct() {
+        parent::__construct();
+        $this->load->model('classes/Role');
+        $this->roles = (new Role)->getRoles();
+    }
+
+    public function getTryAgain() {
+        return $this->tryAgain;
+    }
+
+    public function setTryAgain($tryAgain) {
+        $this->tryAgain = $tryAgain;
+        return $this;
+    }
 
     public function getViewName() {
         return $this->viewName;
@@ -33,12 +47,6 @@ class Login_nl extends CI_Model {
     public function setViewName($viewName) {
         $this->viewName = $viewName;
         return $this;
-    }
-
-    public function __construct() {
-        parent::__construct();
-        $this->load->model('classes/Role');
-        $this->roles = (new Role)->getRoles();
     }
 
     public function getFormHeader() {
@@ -146,24 +154,6 @@ class Login_nl extends CI_Model {
 
     public function setPasswordWarning($passwordWarning) {
         $this->passwordWarning = $passwordWarning;
-        return $this;
-    }
-
-    public function getRole() {
-        return $this->role;
-    }
-
-    public function setRole($role) {
-        $this->role = $role;
-        return $this;
-    }
-
-    public function getRoles() {
-        return $this->roles;
-    }
-
-    public function setRoles($roles) {
-        $this->roles = $roles;
         return $this;
     }
 

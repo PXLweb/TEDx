@@ -12,6 +12,13 @@
         <?php echo $lang->getFormHeader(); ?>
     </h2>
 
+    <?php
+    if (isset($_SESSION['login_failed']) && $_SESSION['login_failed'] == true) {
+        echo '<p class="help-block" style="color: #A94442;">' . $lang->getTryAgain() . '</p>';
+        unset($_SESSION['login_failed']);
+    }
+    ?>
+
     <!--Username or e-mail-->
     <div class="form-group"> 
         <label for="userNameOrEmail" class="sr-only">
@@ -23,11 +30,11 @@
 
     <!--Password-->
     <div class="form-group"> 
-    <label for="password" class="sr-only">
-        <?php echo $lang->getPassword(); ?>
-    </label>
-    <input type="password" id="password" name="password" class="form-control" placeholder="<?php echo $lang->getPassword(); ?>" data-error="<?php echo $lang->getPasswordWarning(); ?>" required />
-    <div class="help-block with-errors"></div>
+        <label for="password" class="sr-only">
+            <?php echo $lang->getPassword(); ?>
+        </label>
+        <input type="password" id="password" name="password" class="form-control" placeholder="<?php echo $lang->getPassword(); ?>" data-error="<?php echo $lang->getPasswordWarning(); ?>" required />
+        <div class="help-block with-errors"></div>
     </div>
 
     <!--Remember me-->

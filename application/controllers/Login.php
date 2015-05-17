@@ -3,9 +3,13 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
+    
+    private $sessionManager;
 
     public function __construct() {
         parent::__construct();
+        $this->load->model('managers/SessionManager');
+        $this->sessionManager = new SessionManager();
     }
 
     public function index() {
@@ -13,7 +17,7 @@ class Login extends CI_Controller {
         $dataGenerator = new DataGenerator();
         $viewData = $dataGenerator->getViewData('login', 'nl');
         $navData = $dataGenerator->getViewData('navbar', 'nl');
-        
+
         $this->load->view('layout_components/header', $viewData);
         $this->load->view('layout_components/navbar', $navData);
         $this->load->view('login');
@@ -29,21 +33,25 @@ class Login extends CI_Controller {
             $this->load->model('managers/UserManager');
             $userManager = new UserManager();
             // Returns an anonymous object representing a DB user row when the credentials are valid.
-            $user = $userManager->isValid($userNameOrEmail, $password);
-            if ($user) {
-                $userManager->setSession();
-                echo 'logged in';
-                echo var_dump($this->session->all_userdata());
+            $isUserValid = $userManager->isValid($userNameOrEmail, $password);
+            if ($isUserValid) {
+                $user = $userManager->getUser();
+                $this->sessionManager->setUser($user);
+                $this->sessionManager->setCookie($user);
+                redirect('home');
             } else {
-                echo 'fail';
+                $this->reTry();
             }
         } else {
-            echo 'fail';
+            $this->reTry();
         }
     }
 
-    public function rememberMe() {
-        
+    public function reTry() {
+        $this->sessionManager->startSession();
+        $_SESSION['login_failed'] = true;
+
+        redirect('login');
     }
 
 }

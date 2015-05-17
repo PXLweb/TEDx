@@ -10,7 +10,11 @@
 <script src="<?php echo site_url('assets/dist/js/jquery-1.11.3.js'); ?>" ></script>
 <script src="<?php echo site_url('assets/dist/js/jquery-2.1.3.js'); ?>" ></script>
 
-<?php if ($lang->getViewName() == 'register' || $lang->getViewName() == 'login') { ?>
+<?php
+if ($lang->getViewName() == 'register' ||
+        $lang->getViewName() == 'login' ||
+        $lang->getViewName() == 'forum') {
+    ?>
     <script src="<?php echo site_url('assets/js/validator.js'); ?>"></script>
 <?php } ?>
 

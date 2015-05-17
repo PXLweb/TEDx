@@ -50,6 +50,16 @@ class UserManager extends CI_Model {
         return $query->row()->role_id;
     }
 
+    function getRole($userId) {
+        $sql = 'SELECT ur.role_id, role_name ' .
+                'FROM users as u ' .
+                'JOIN user_role AS ur ON u.user_id = ur.user_id ' .
+                'JOIN roles AS r ON ur.role_id = r.role_id ' .
+                "WHERE u.user_id = '" . $userId . "';";
+        $query = $this->db->query($sql);
+        return $query->row();
+    }
+
     function translateRole($role, $lang) {
         $formData = NULL;
         switch ($lang) {
@@ -81,7 +91,8 @@ class UserManager extends CI_Model {
                 "' OR email = '" . $userNameOrEmail . "'");
         $query = $this->db->get('users');
         if ($query->num_rows() == 1) {
-            if (password_verify($password, $query->row()->password)) {
+            $user = $query->row();
+            if (password_verify($password, $user->password) && $user->enabled == true) {
                 $this->saveUser($query->row()); // Gives values to private $user.
                 return TRUE;
             } else {
@@ -99,23 +110,13 @@ class UserManager extends CI_Model {
             'firstname' => $row->firstname,
             'lastname' => $row->lastname,
             'email' => $row->email,
-            'lang' => $row->lang
+            'lang' => $row->lang,
+            'logged_in' => 'true',
+            'rememberme' => $row->remember_me
         ];
-        $this->user['role_name'] = $this->getRoleName($this->user['user_id']);
-    }
-
-    function getRoleName($userId) {
-        $sql = 'SELECT role_name ' .
-                'FROM users as u ' .
-                'JOIN user_role AS ur ON u.user_id = ur.user_id ' .
-                'JOIN roles AS r ON ur.role_id = r.role_id ' .
-                "WHERE u.user_id = '" . $userId . "';";
-        $query = $this->db->query($sql);
-        return $query->row()->role_name;
-    }
-
-    function setSession() {
-        $this->session->set_userdata($this->user);
+        $role = $this->getRole($this->user['user_id']);
+        $this->user['role_id'] = $role->role_id;
+        $this->user['role_name'] = $role->role_name;
     }
 
     function exists($user) {
@@ -149,6 +150,15 @@ class UserManager extends CI_Model {
         } else {
             return FALSE;
         }
+    }
+
+    public function getUser() {
+        return $this->user;
+    }
+
+    public function setUser($user) {
+        $this->user = $user;
+        return $this;
     }
 
 }

@@ -43,15 +43,25 @@ class ForumManager extends CI_Model {
     }
 
     public function getPosts($topicId) {
-        $this->db->where($this->topicIdColumnName, $topicId);
-        $query = $this->db->get($this->postsTable);
+        $sql = 'SELECT post_id, title, content, date_time, topic_id, posted_by, username FROM posts ' .
+                'JOIN users AS u ON posted_by = user_id ' .
+                'where topic_id = ' . $topicId . ';';
+        $query = $this->db->query($sql);
         return $query->result_array();
+//        $this->db->where($this->topicIdColumnName, $topicId);
+//        $query = $this->db->get($this->postsTable);
+//        return $query->result_array();
     }
 
     public function getUserName($userId) {
         $this->db->where('user_id', $userId);
         $query = $this->db->get('users');
         return $query->result_array();
+    }
+
+    public function postComment($postData) {
+        $this->db->insert('posts', $postData);
+        return $this->db->affected_rows();
     }
 
 }

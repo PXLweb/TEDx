@@ -12,12 +12,12 @@ class Register_nl {
     private $language = "nl";
     private $formHeader = "Registreren";
     private $userName = "Gebruikersnaam";
-    private $userNameWarning = "Geen geldige gebruikersnaam";
+    private $userNameWarning = "Geen geldige gebruikersnaam.";
     private $userNameInUseWarning = "Deze gebruikersnaam is al in gebruik.";
     private $firstName = "Voornaam";
     private $lastName = "Achternaam";
     private $email = "E-mailadres";
-    private $emailWarning = "Geen geldig e-mailadres";
+    private $emailWarning = "Geen geldig e-mailadres.";
     private $emailInUseWarning = "Dit e-mailadres is al in gebruik.";
     private $tel = "Telefoonnummer";
     private $cell = "Mobiel nummer";
