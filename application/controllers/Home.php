@@ -7,6 +7,8 @@ class Home extends CI_Controller {
     private $viewDataHome;
     private $viewDataNav;
     private $userManager;
+    private $sessionManager;
+    private $dataGenerator;
 
     public function __construct() {
         parent::__construct();
@@ -14,14 +16,18 @@ class Home extends CI_Controller {
         $this->load->model('managers/UserManager');
         $this->userManager = new UserManager();
 
+        $this->load->model('managers/SessionManager');
+        $this->sessionManager = new SessionManager();
+
         // Generate data.
         $this->load->model('managers/DataGenerator');
-        $dataGenerator = new DataGenerator();
-        $this->viewDataHome = $dataGenerator->getViewData('home', 'nl');
-        $this->viewDataNav = $dataGenerator->getViewData('navbar', 'nl');
+        $this->dataGenerator = new DataGenerator();
+        $this->viewDataHome = $this->dataGenerator->getViewData('home', 'nl');
+        $this->viewDataNav = $this->dataGenerator->getViewData('navbar', 'nl');
     }
 
     public function index() {
+        $this->sessionManager->init();
         $this->load->view('layout_components/header', $this->viewDataHome);
         $this->load->view('layout_components/navbar', $this->viewDataNav);
         $this->load->view('home');
@@ -29,17 +35,13 @@ class Home extends CI_Controller {
     }
 
     public function login() {
-        $this->load->model('managers/UserManager');
-        $viewDataLogin = (new DataGenerator)->getViewData('login', 'nl');
+        $viewDataLogin = $this->dataGenerator->getViewData('login', 'nl');
         $this->load->view('login', $viewDataLogin);
     }
 
     public function logout() {
-        if (!session_status() === PHP_SESSION_ACTIVE) {
-            session_start();
-        }
-        session_destroy();
-
+        $this->sessionManager->restartSession();
+        $_SESSION['user']['logged_in'] = FALSE;
         redirect('home');
     }
 

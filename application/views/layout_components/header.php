@@ -1,4 +1,4 @@
-<!-- http://localhost/TEDx/registreren -->
+<!-- http://localhost/TEDx/ -->
 <?php 
 if(!isset($_SESSION)){
     session_start();

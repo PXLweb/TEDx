@@ -19,7 +19,7 @@
                 <li><a href="<?php echo $navbar->getRegisterRoute(); ?>"><?php echo $navbar->getMenuRegister(); ?></a></li>
             </ul>
             <?php
-            if (isset($_SESSION['user'])) {
+            if (isset($_SESSION['user']) && $_SESSION['user']['logged_in'] == TRUE) {
                 echo '<ul class="nav navbar-nav pull-right">';
                 echo '<li><a href="' . $navbar->getProfileRoute() . '">' .
                 $_SESSION['user']['username'] . ' ingelogd</a></li>';

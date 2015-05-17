@@ -40,7 +40,7 @@
     <!--Remember me-->
     <div class="checkbox">
         <label>
-            <input type="checkbox" value="rememberMe"> <?php echo $lang->getRememberMe(); ?>
+            <input type="checkbox" name="remember_me" value="yes"> <?php echo $lang->getRememberMe(); ?>
         </label>
     </div>
 

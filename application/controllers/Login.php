@@ -3,13 +3,15 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
-    
+
     private $sessionManager;
+    private $userManager;
 
     public function __construct() {
         parent::__construct();
         $this->load->model('managers/SessionManager');
         $this->sessionManager = new SessionManager();
+        $this->userManager = new UserManager();
     }
 
     public function index() {
@@ -31,13 +33,15 @@ class Login extends CI_Controller {
             $userNameOrEmail = $this->input->post('userNameOrEmail');
             $password = $this->input->post('password');
             $this->load->model('managers/UserManager');
-            $userManager = new UserManager();
-            // Returns an anonymous object representing a DB user row when the credentials are valid.
-            $isUserValid = $userManager->isValid($userNameOrEmail, $password);
+
+            $rememberMe = $this->input->post('remember_me');
+            log_message('debugRememberMe', var_export($rememberMe));
+            $this->sessionManager->saveRememberMeToSession($rememberMe);
+
+            $isUserValid = $this->userManager->isValid($userNameOrEmail, $password);
             if ($isUserValid) {
-                $user = $userManager->getUser();
+                $user = $this->userManager->getUser();
                 $this->sessionManager->setUser($user);
-                $this->sessionManager->setCookie($user);
                 redirect('home');
             } else {
                 $this->reTry();
@@ -48,7 +52,7 @@ class Login extends CI_Controller {
     }
 
     public function reTry() {
-        $this->sessionManager->startSession();
+        session_start();
         $_SESSION['login_failed'] = true;
 
         redirect('login');

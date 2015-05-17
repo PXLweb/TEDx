@@ -35,6 +35,12 @@ if ($lang->getViewName() == 'register' ||
 </div><!-- /container -->
 
 <!--FOOTER-->
+<?php
+if(isset($_SESSION['user'])){
+    var_dump($_SESSION['user']);
+}
+var_dump($_COOKIE);
+?>
 <footer class="footer">
     <div class="container">
         <p class="pull-right"><a href="#">Back to top</a></p>

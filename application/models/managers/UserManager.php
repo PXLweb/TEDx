@@ -36,6 +36,17 @@ class UserManager extends CI_Model {
         return $insertResult;
     }
 
+    public function getUserById($userId) {
+        $this->db->where('user_id', $userId);
+        $query = $this->db->get('users');
+
+        if ($query->num_rows() == 1) {
+            return $query->result_array();
+        } else {
+            return FALSE;
+        }
+    }
+
     function extractRole(&$userData) {
         $role = $userData['role_name'];
         unset($userData['role_name']);
@@ -103,7 +114,7 @@ class UserManager extends CI_Model {
         }
     }
 
-    function saveUser($row) {
+    function saveUser($row) {       
         $this->user = [
             'user_id' => $row->user_id,
             'username' => $row->username,
@@ -112,18 +123,18 @@ class UserManager extends CI_Model {
             'email' => $row->email,
             'lang' => $row->lang,
             'logged_in' => 'true',
-            'rememberme' => $row->remember_me
+            'remember_me' => $_SESSION['remember_me']
         ];
         $role = $this->getRole($this->user['user_id']);
         $this->user['role_id'] = $role->role_id;
         $this->user['role_name'] = $role->role_name;
     }
 
-    function exists($user) {
+    function doesUserNameExist($user) {
         $this->db->where('username', $user);
         $query = $this->db->get('users');
 
-        if ($query->num_rows() == 0) {
+        if ($query->num_rows() == 1) {
             return TRUE;
         } else {
             return FALSE;
