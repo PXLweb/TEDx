@@ -11,6 +11,11 @@ body{
     vertical-align: top;
 }
 
+.my-error{
+    color: #A94442;
+    font-weight: bold;
+}
+
 .navbar-inner {
     text-align:center;
 }

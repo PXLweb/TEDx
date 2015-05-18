@@ -11,50 +11,12 @@ class SessionManager extends CI_Model {
     }
 
     public function init() {
-        if (isset($_SESSION['user']) && $_SESSION['user']['logged_in'] == FALSE) {
-            setcookie('remember_me', '0', time() + 60 * 60 * 24 * 7);
-        } else if (isset($_SESSION['user']) && $_SESSION['user']['logged_in'] == TRUE) {
+//        Logged in with remember_me = true => set cookie with remember_me
+        if (array_key_exists('user', $_SESSION)){
             $this->setCookie();
-        } else if (isset($_COOKIE['remember_me']) && $_COOKIE['remember_me']) {
+        } else if(array_key_exists('remember_me', $_COOKIE) && $_COOKIE['remember_me'] === '1') {
             $this->loadSessionFromCookie();
         }
-    }
-
-    function restartSession() {
-        if (session_status() === PHP_SESSION_ACTIVE) {
-            if (isset($_SESSION['user'])) {
-                unset($_SESSION['user']);
-            }
-            session_destroy();
-            session_start();
-        } else {
-            session_start();
-        }
-    }
-
-    function destroy() {
-        session_destroy();
-        if (isset($_SESSION['user'])) {
-            unset($_SESSION['user']);
-        }
-    }
-
-    function setUser($user) {
-        $user['logged_in'] = TRUE;
-        $_SESSION['user'] = $user;
-    }
-
-    function saveRememberMeToSession($rememberMe) {
-        if ($rememberMe == 'yes') {
-            $_SESSION['remember_me'] = '1';
-        } else {
-            $_SESSION['remember_me'] = '0';
-        }
-    }
-
-    function setCookie() {
-        setcookie('user_id', $_SESSION['user']['user_id'], time() + 60 * 60 * 24 * 7);
-        setcookie('remember_me', $_SESSION['user']['remember_me'], time() + 60 * 60 * 24 * 7);
     }
 
     function loadSessionFromCookie() {
@@ -73,6 +35,54 @@ class SessionManager extends CI_Model {
              *                      ...
              */
         }
+    }
+    
+    function setUser($user) {
+        $user['logged_in'] = TRUE;
+        
+        foreach ($user as $k => $v){
+            $_SESSION[$k] = $v;
+        }
+        
+        $_SESSION['guest'] = FALSE;
+    }
+        
+    function setCookie() {
+        setcookie('user_id', $_SESSION['user']['user_id'], time() + 60 * 60 * 24 * 7);
+        setcookie('remember_me', $_SESSION['user']['remember_me'], time() + 60 * 60 * 24 * 7);
+    }
+
+    function restartSession() {
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            if (array_key_exists('user', $_SESSION)) {
+                unset($_SESSION['user']);
+            }
+            session_destroy();
+            session_start();
+            $_SESSION['guest'] = TRUE;
+        } else {
+            session_start();
+        }
+    }
+
+    function logout() {
+        if (session_status() === PHP_SESSION_ACTIVE) {
+            if (array_key_exists('user', $_SESSION)) {
+                unset($_SESSION['user']);
+            }
+            session_destroy();
+            session_start();
+            $_SESSION['guest'] = TRUE;
+            // $_SESSION['user']['logged_in'] = FALSE;
+        }
+    }
+
+    function destroy() {
+        session_destroy();
+        if (isset($_SESSION['user'])) {
+            unset($_SESSION['user']);
+        }
+        $_SESSION['guest'] = TRUE;
     }
 
 }

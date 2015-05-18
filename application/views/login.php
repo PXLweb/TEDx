@@ -14,7 +14,7 @@
 
     <?php
     if (isset($_SESSION['login_failed']) && $_SESSION['login_failed'] == true) {
-        echo '<p class="help-block" style="color: #A94442;">' . $lang->getTryAgain() . '</p>';
+        echo '<p class="help-block my-error">' . $lang->getTryAgain() . '</p>';
         unset($_SESSION['login_failed']);
     }
     ?>
@@ -40,7 +40,7 @@
     <!--Remember me-->
     <div class="checkbox">
         <label>
-            <input type="checkbox" name="remember_me" value="yes"> <?php echo $lang->getRememberMe(); ?>
+            <input type="checkbox" id="remember_me" name="remember_me" value="1" /><?php echo $lang->getRememberMe(); ?>
         </label>
     </div>
 

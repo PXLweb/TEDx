@@ -1,4 +1,5 @@
 <div class="navbar-wrapper">
+    <?php $cssStyleTag = 'nav {display: hidden;}'; ?>
     <nav class="navbar navbar-inverse navbar-fixed-top">
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -19,10 +20,10 @@
                 <li><a href="<?php echo $navbar->getRegisterRoute(); ?>"><?php echo $navbar->getMenuRegister(); ?></a></li>
             </ul>
             <?php
-            if (isset($_SESSION['user']) && $_SESSION['user']['logged_in'] == TRUE) {
+            if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == TRUE) {
                 echo '<ul class="nav navbar-nav pull-right">';
                 echo '<li><a href="' . $navbar->getProfileRoute() . '">' .
-                $_SESSION['user']['username'] . ' ingelogd</a></li>';
+                $_SESSION['username'] . ' ingelogd</a></li>';
                 echo '<li><a href="' . site_url('/home/logout/') . '">' .
                 'Uitloggen</a></li>';
                 echo '</ul>';

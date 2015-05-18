@@ -41,10 +41,18 @@ class UserManager extends CI_Model {
         $query = $this->db->get('users');
 
         if ($query->num_rows() == 1) {
+            $user = $query->result_array();
+            $this->addRoleToUser($user);
             return $query->result_array();
         } else {
             return FALSE;
         }
+    }
+    
+    function addRoleToUser(&$user){
+        $role = $this->getRole($user['user_id']);
+        $user['role_id'] = $role['role_id'];
+        $user['role_name'] = $role['role_name'];
     }
 
     function extractRole(&$userData) {
@@ -89,9 +97,9 @@ class UserManager extends CI_Model {
         }
 
         $roles = $formData->getRoles();
-        foreach ($roles as $row) {
-            if ($row == $role) {
-                $translatedRole = key($roles);
+        foreach ($roles as $k => $v) {
+            if ($v === $role) {
+                $translatedRole = $k;
             }
         }
         return $translatedRole;

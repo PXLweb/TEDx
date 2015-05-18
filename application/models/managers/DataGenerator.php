@@ -90,6 +90,20 @@ class DataGenerator extends CI_Model {
                     return $data;
                 }
 
+            case 'topics':
+                $cssLink = site_url('assets/css/topics.css');
+                $data['cssLinks']['topics'] = '<link rel="stylesheet" href="' . $cssLink . '" />';
+
+                if ($lang === 'nl') {
+                    $this->load->model('lang/TopicsNL');
+                    $data['lang'] = new TopicsNL();
+                    return $data;
+                } else if ($lang === 'en') {
+                    $this->load->model('lang/Topics_en');
+                    $data['lang'] = new Topics_en();
+                    return $data;
+                }
+
             case 'posts':
                 $cssLinkPosts = site_url('assets/css/posts.css');
                 $data['cssLinks']['posts'] = '<link rel="stylesheet" href="' . $cssLinkPosts . '" />';

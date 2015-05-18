@@ -7,19 +7,23 @@ class Forum extends CI_Controller {
     private $viewData;
     private $navData;
     private $forumManager;
+    private $dataGenerator;
 
-    public function __construct() {
+    function __construct() {
         parent::__construct();
+        // Initialize managers.
         $this->load->model('managers/DataGenerator');
-        $dataGenerator = new DataGenerator();
-        $this->viewData = $dataGenerator->getViewData('forum', 'nl'); // Accessible in view through $lang
-        $this->navData = $dataGenerator->getViewData('navbar', 'nl'); // Accessible in view through $navbar
         $this->load->model('managers/ForumManager');
+        $this->dataGenerator = new DataGenerator();
         $this->forumManager = new ForumManager();
+
+        // Generate data.
+        $this->viewData = $this->dataGenerator->getViewData('forum', 'nl'); // Accessible in view through $lang
+        $this->navData = $this->dataGenerator->getViewData('navbar', 'nl'); // Accessible in view through $navbar
     }
 
 //    Loads all categories
-    public function index() {
+    function index() {
         // Load data.
         $this->viewData['categories'] = $this->forumManager->getCategories();
 
@@ -30,14 +34,11 @@ class Forum extends CI_Controller {
     }
 
 //    Loads all posts linked to one topic
-    public function posts($topic_id) {
+    function posts($topic_id) {
 //        Load data.
-        $viewDataPosts = (new DataGenerator())->getViewData('posts', 'nl');
-        $viewDataPosts['topics'] = NULL;
+        $viewDataPosts = $this->dataGenerator->getViewData('posts', 'nl');
         $_SESSION['topicId'] = $topic_id;
         $_SESSION['topicSubject'] = $this->forumManager->getTopicSubject($topic_id);
-//        $viewDataPosts['topicId'] = $topic_id;
-//        $viewDataPosts['topicSubject'] = $this->forumManager->getTopicSubject($topic_id);
         $viewDataPosts['posts'] = $this->forumManager->getPosts($topic_id);
 
 //        Load views.
@@ -48,42 +49,72 @@ class Forum extends CI_Controller {
     }
 
 //    Loads all topics linked to one category    
-    public function category($category_id) {
+    function category($category_id) {
+        $_SESSION['category_id'] = $category_id;
+        $this->viewData = $this->dataGenerator->getViewData('topics', 'nl');
         $this->viewData['topics'] = $this->forumManager->getTopics($category_id);
-
-        $this->loadHeaderAndNavBar();
-        $this->load->view('topics', $this->viewData);
+        $this->load->view('layout_components/header', $this->viewData);
+        $this->load->view('layout_components/navbar', $this->navData);
+        $this->load->view('topics');
+        $this->load->view('layout_components/footer');
     }
 
-    public function loadHeaderAndNavBar() {
+    function loadHeaderAndNavBar() {
         $this->load->view('layout_components/header', $this->viewData);
         $this->load->view('layout_components/navbar', $this->navData);
     }
 
-    public function postComment() {
-        // Assemble row for posts table.
-        print_r($_POST);
-        $postData = array(
-            'topic_id' => $_SESSION['topicId'],
-            'title' => $this->input->post('title'),
-            'content' => $this->input->post('content'),
-            'guest_name' => $this->input->post('guest_name')
-        );
-        if (NULL === $this->input->post('posted_by')) {
-            $postData['posted_by'] = 6; // Id of anonymous user.
-        } else {
-            $postData['posted_by'] = $this->input->post('posted_by');
-        }
-
-        $insertedRows = $this->forumManager->postComment($postData);
-        if ($insertedRows == 1) {
-            redirect('forum/posts/' . $_SESSION['topicId']);
+    function postTopic() {
+        $post = $this->input->post(NULL, TRUE);
+        $topicRowData = $this->generateTopicRow($post);
+        $insertedRows['topic'] = $this->forumManager->postTopic($topicRowData);
+        $_SESSION['topic_id'] = $this->db->insert_id();
+        
+        $commentRowData = $this->generateCommentRow($post);
+        $insertedRows['comment'] = $this->forumManager->postComment($commentRowData);
+        if ($insertedRows['topic'] == 1 && $insertedRows['comment'] == 1) {
+            redirect('forum/category/' . $_SESSION['category_id']);
         } else {
             redirect('forum/postError');
         }
     }
 
-    public function postError() {
+    function generateTopicRow($post) {
+        $postData = array(
+            'subject' => $post['subject'],
+            'category_id' => $_SESSION['category_id'],
+            'created_by' => $_SESSION['user_id']
+        );
+        return $postData;
+    }
+
+    function postComment() {
+        // Assemble row for posts table.
+        $postRowData = $this->generatePostRow($this->input->post(NULL, TRUE));
+
+        $insertedRows = $this->forumManager->postComment($postRowData);
+        if ($insertedRows == 1) {
+            redirect('forum/posts/' . $_SESSION['topic_id']);
+        } else {
+            redirect('forum/postError');
+        }
+    }
+
+    function generateCommentRow($post) {
+        $postData = array(
+            'content' => $post['content'],
+            'topic_id' => $_SESSION['topic_id'],
+        );
+        if (array_key_exists('guest', $_SESSION) && $_SESSION['guest'] === TRUE) {
+            $postData['posted_by'] = 6; // Id of anonymous user.
+        } else {
+            $postData['posted_by'] = $_SESSION['user_id'];
+        }
+        var_dump($postData);
+        return $postData;
+    }
+
+    function postError() {
         $this->loadHeaderAndNavBar();
         $this->load->view('errors/post_error');
     }

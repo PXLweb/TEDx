@@ -36,10 +36,8 @@ if ($lang->getViewName() == 'register' ||
 
 <!--FOOTER-->
 <?php
-if(isset($_SESSION['user'])){
-    var_dump($_SESSION['user']);
-}
 var_dump($_COOKIE);
+var_dump($_SESSION);
 ?>
 <footer class="footer">
     <div class="container">

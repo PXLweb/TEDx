@@ -40,8 +40,7 @@ class Home extends CI_Controller {
     }
 
     public function logout() {
-        $this->sessionManager->restartSession();
-        $_SESSION['user']['logged_in'] = FALSE;
+        $this->sessionManager->logout();
         redirect('home');
     }
 

@@ -3,15 +3,11 @@
 class ForumManager extends CI_Model {
 
     // Table = posts, foreing key for topic = topic_id
-    private $postsTable = 'posts';
     private $topicIdColumnName = 'topic_id';
     // Table = topics, foreing key for category = category_id
     private $topicsTable = 'topics';
-    private $topicsSubjectColumnName = 'subject';
-    private $categoryIdColumnName = 'category_id';
     // Table categories
     private $categoriesTable = 'categories';
-    private $usersTable = 'users';
 
     public function __construct() {
         parent::__construct();
@@ -38,8 +34,6 @@ class ForumManager extends CI_Model {
         $query = $this->db->get($this->topicsTable);
         $result = $query->row();
         return $result->subject;
-//        $result = $query->result_array();
-//        return $result[0]['subject'];
     }
 
     public function getPosts($topicId) {
@@ -48,9 +42,6 @@ class ForumManager extends CI_Model {
                 'where topic_id = ' . $topicId . ';';
         $query = $this->db->query($sql);
         return $query->result_array();
-//        $this->db->where($this->topicIdColumnName, $topicId);
-//        $query = $this->db->get($this->postsTable);
-//        return $query->result_array();
     }
 
     public function getUserName($userId) {
@@ -58,11 +49,14 @@ class ForumManager extends CI_Model {
         $query = $this->db->get('users');
         return $query->result_array();
     }
-    
-    
 
-    public function postComment($postData) {
-        $this->db->insert('posts', $postData);
+    function postTopic($topicRowData) {
+        $this->db->insert('topics', $topicRowData);
+        return $this->db->affected_rows();
+    }
+
+    public function postComment($postRowData) {
+        $this->db->insert('posts', $postRowData);
         return $this->db->affected_rows();
     }
 

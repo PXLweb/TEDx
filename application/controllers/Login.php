@@ -27,22 +27,15 @@ class Login extends CI_Controller {
     }
 
     public function valideren() {
-        // returns true when inputEmail and inputPassword contain a value, if not,
-        // an error is added to $errors (can 
         if ($this->input->post('userNameOrEmail') && $this->input->post('password')) {
             $userNameOrEmail = $this->input->post('userNameOrEmail');
             $password = $this->input->post('password');
-            $this->load->model('managers/UserManager');
-
-            $rememberMe = $this->input->post('remember_me');
-            log_message('debugRememberMe', var_export($rememberMe));
-            $this->sessionManager->saveRememberMeToSession($rememberMe);
-
             $isUserValid = $this->userManager->isValid($userNameOrEmail, $password);
             if ($isUserValid) {
                 $user = $this->userManager->getUser();
+                $user['remember_me'] = $this->input->post('remember_me');
                 $this->sessionManager->setUser($user);
-                redirect('home');
+                $this->forward();
             } else {
                 $this->reTry();
             }
@@ -53,9 +46,19 @@ class Login extends CI_Controller {
 
     public function reTry() {
         session_start();
-        $_SESSION['login_failed'] = true;
+        $_SESSION['login_failed'] = TRUE;
 
         redirect('login');
+    }
+
+    public function forward() {
+        if(array_key_exists('route_previous_page', $_SESSION) && isset($_SESSION['route_previous_page'])) {
+            $url = $_SESSION['route_previous_page'];
+            unset($_SESSION['route_previous_page']);
+            redirect($url);
+        }else{
+            redirect('home');
+        }
     }
 
 }
