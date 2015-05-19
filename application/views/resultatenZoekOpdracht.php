@@ -7,7 +7,7 @@ and open the template in the editor.
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Resultataen</title>
+        <title>Resultaten</title>
     </head>
     <body>
         <?php
@@ -16,8 +16,8 @@ mysql_select_db("tedx") or die(mysql_error());
 
 $clean = mysql_real_escape_string($_GET['search']);
 $events = mysql_query("SELECT * FROM events WHERE event_name = '$clean'") or die(mysql_error());
-if(mysql_num_rows($hello) >= 1) {
-	while($i = mysql_fetch_array($hello)) {
+if(mysql_num_rows($events) >= 1) {
+	while($i = mysql_fetch_array($events)) {
 		echo '<p>'. $i['event_name']. '<br/>' .$i['event_speaker']. '<br/>' .$i['event_location']. '<br/>' .$i['event_datetime']. '</p>'; 
 	}
 }
@@ -27,7 +27,7 @@ else {
 $topics = mysql_query("SELECT * FROM topics WHERE  = '$clean'") or die(mysql_error());
 if(mysql_num_rows($topics) >= 1) {
 	while($i = mysql_fetch_array($topics)) {
-		echo '<p>'. $i['event_name']. '<br/>' .$i['event_speaker']. '<br/>' .$i['event_location']. '<br/>' .$i['event_datetime']. '</p>'; 
+		echo '<p>'. $i['topic_id']. '<br/>' .$i['topic_subject']. '<br/>' .$i['topic date']. '<br/>' .$i['topic_cat'].'<br/>' .$i['topic_by']. '</p>'; 
 	}
 }
 else {
