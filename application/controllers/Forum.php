@@ -59,6 +59,18 @@ class Forum extends CI_Controller {
         $this->load->view('layout_components/footer');
     }
 
+    function deleteTopic($topicId) {
+        $this->forumManager->deleteTopic($topicId);
+
+        redirect('forum/category/' . $_SESSION['category_id']);
+    }
+
+    function editCategoryTitle($topicId) {
+        $this->forumManager->deleteTopic($topicId);
+
+        redirect('forum/category/' . $_SESSION['category_id']);
+    }
+
     function loadHeaderAndNavBar() {
         $this->load->view('layout_components/header', $this->viewData);
         $this->load->view('layout_components/navbar', $this->navData);
@@ -66,52 +78,23 @@ class Forum extends CI_Controller {
 
     function postTopic() {
         $post = $this->input->post(NULL, TRUE);
-        $topicRowData = $this->generateTopicRow($post);
-        $insertedRows['topic'] = $this->forumManager->postTopic($topicRowData);
-        $_SESSION['topic_id'] = $this->db->insert_id();
-        
-        $commentRowData = $this->generateCommentRow($post);
-        $insertedRows['comment'] = $this->forumManager->postComment($commentRowData);
-        if ($insertedRows['topic'] == 1 && $insertedRows['comment'] == 1) {
+        $_SESSION['topic_id'] = $this->forumManager->postTopic($post);
+
+        $_SESSION['comment_id'] = $this->forumManager->postComment($post);
+        if ($_SESSION['topic_id'] > 1 && $_SESSION['comment_id'] > 1) {
             redirect('forum/category/' . $_SESSION['category_id']);
         } else {
             redirect('forum/postError');
         }
     }
 
-    function generateTopicRow($post) {
-        $postData = array(
-            'subject' => $post['subject'],
-            'category_id' => $_SESSION['category_id'],
-            'created_by' => $_SESSION['user_id']
-        );
-        return $postData;
-    }
-
-    function postComment() {
-        // Assemble row for posts table.
-        $postRowData = $this->generateCommentRow($this->input->post(NULL, TRUE));
-
-        $insertedRows = $this->forumManager->postComment($postRowData);
-        if ($insertedRows == 1) {
+    function postComment($post) {
+        $_SESSION['comment_id'] = $this->forumManager->postComment($post);
+        if ($_SESSION['comment_id'] > 1) {
             redirect('forum/posts/' . $_SESSION['topic_id']);
         } else {
             redirect('forum/postError');
         }
-    }
-
-    function generateCommentRow($post) {
-        $postData = array(
-            'content' => $post['content'],
-            'topic_id' => $_SESSION['topic_id'],
-        );
-        if (array_key_exists('guest', $_SESSION) && $_SESSION['guest'] === TRUE) {
-            $postData['posted_by'] = 6; // Id of anonymous user.
-        } else {
-            $postData['posted_by'] = $_SESSION['user_id'];
-        }
-        var_dump($postData);
-        return $postData;
     }
 
     function postError() {

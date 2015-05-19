@@ -4,15 +4,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Registreren extends CI_Controller {
 
-    public $formData;          // Contains a language class and a CSS link.
-    public $userManager;   // DAO with checks for users
-    public $userData;
+    private $formData;          // Contains a language class and a CSS link.
+    private $userManager;   // DAO with checks for users
+    private $userData;
+    private $navData;
 
     public function __construct() {
         parent::__construct();
         $this->load->model('managers/DataGenerator');
         $this->load->model('managers/UserManager');
         $this->formData = (new DataGenerator)->getViewData('register', 'nl');
+        $this->navData = (new DataGenerator)->getViewData('navbar', 'nl');
         $this->userManager = new UserManager();
     }
 
@@ -26,7 +28,6 @@ class Registreren extends CI_Controller {
         $this->load->view('layout_components/navbar', $navData);
         $this->load->view('register');
         $this->load->view('layout_components/footer');
-        
     }
 
     function loadIndexPage() {
@@ -47,6 +48,13 @@ class Registreren extends CI_Controller {
         }
     }
 
+    function ok() {
+        $this->load->view('layout_components/header', $this->formData);
+        $this->load->view('layout_components/navbar', $this->navData);
+        $this->load->view('registered');
+        $this->load->view('layout_components/footer');
+    }
+
     function createUser() {
         $this->CheckUserAndEmail();  // writes errors in $formData['errors']
         // Create user if it doesn't exist
@@ -54,8 +62,7 @@ class Registreren extends CI_Controller {
             // Inserts in 2 tables => users, user_role 
             $resultDoubleInsert = $this->userManager->create($this->userData);
             if ($resultDoubleInsert['userInsert'] == TRUE && $resultDoubleInsert['roleInsert'] == TRUE) {
-
-                $this->load->view('registered');
+                redirect('registreren/ok');
             } else {
                 $this->loadIndexPage();
             }

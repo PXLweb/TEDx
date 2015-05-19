@@ -50,14 +50,49 @@ class ForumManager extends CI_Model {
         return $query->result_array();
     }
 
-    function postTopic($topicRowData) {
+    function postTopic($post) {
+        $topicRowData = $this->generateTopicRow($post);
         $this->db->insert('topics', $topicRowData);
-        return $this->db->affected_rows();
+        return $this->db->insert_id();
     }
 
-    public function postComment($postRowData) {
-        $this->db->insert('posts', $postRowData);
-        return $this->db->affected_rows();
+    public function postComment($post) {
+        $commentRowData = $this->generateCommentRow($post);
+        $this->db->insert('posts', $commentRowData);
+        return $this->db->insert_id();
+    }
+
+    function generateTopicRow($post) {
+        $postData = array(
+            'subject' => $post['subject'],
+            'category_id' => $_SESSION['category_id'],
+            'created_by' => $_SESSION['user_id']
+        );
+        return $postData;
+    }
+
+    function generateCommentRow($post) {
+        $postData = array(
+            'content' => $post['content'],
+            'topic_id' => $_SESSION['topic_id'],
+        );
+        if (array_key_exists('guest', $_SESSION) && $_SESSION['guest'] === TRUE) {
+            $postData['posted_by'] = 6; // Id of anonymous user.
+        } else {
+            $postData['posted_by'] = $_SESSION['user_id'];
+        }
+        var_dump($postData);
+        return $postData;
+    }
+
+    function editCategoryTitle($topicId) {
+        $this->db->where('topic_id', $topicId);
+        $this->db->update('topics', $data);
+    }
+
+    function deleteTopic($topicId) {
+        $this->db->delete('posts', array('topic_id' => $topicId));
+        $this->db->delete('topics', array('topic_id' => $topicId));
     }
 
 }

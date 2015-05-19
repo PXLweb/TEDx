@@ -8,7 +8,7 @@
             <p>B-3500 Hasselt</p>
             <p>tel. + 32 11 77 55 55</p>
             <p>fax. + 32 11 77 55 59</p>
-            <p>pxl@pxl.be</p>
+            <p>E-mail: <a href="mailto:pxl@pxl.be">pxl@pxl.be</a></p>
         </div>
         <div class="col-lg-4 col-centered"></div>
     </div>
