@@ -1,7 +1,7 @@
 <div class="container">
     <h1 class="text-center"><?php echo $lang->getSubjects(); ?></h1>
 
-    <div class="row">
+    <div class="row ">
 
         <!--Sidebar/form-->
         <div class="col-sm-5 blog-sidebar">
@@ -33,10 +33,10 @@
             <?php
             if ($_SESSION['guest'] == TRUE || $_SESSION['role_name'] == 'Banned') {
                 $_SESSION['route_previous_page'] = 'forum/category/' . $_SESSION['category_id'];
-                echo '<p class="text-center my-error">' . $lang->getOnlyUsersWarning() . '</p>';
-                echo '<p class="text-center"><a class="btn btn-lg btn-primary" href="' . site_url('login') . '">' . $lang->getLoginButton() . '</a></p>';
+                echo '<p my-error">' . $lang->getOnlyUsersWarning() . '</p>';
+                echo '<p><a class="btn btn-lg btn-primary" href="' . site_url('login') . '">' . $lang->getLoginButton() . '</a></p>';
             } else {
-                echo '<p class="text-center">' . 
+                echo '<p>' . 
                         '<input type="submit" class="btn btn-lg btn-primary" value="' . $lang->getNewButton() . '" /></p>';
             }
            
@@ -55,7 +55,7 @@
             foreach ($topics as $topic) {
                 echo '<a href="' . $forumActionLink . $topic['topic_id'] . '"><h3>' . $topic['subject'] . '</h3></a>';
                 echo '<p>' . $lang->GetPostedBy() . $topic['username'] . $lang->GetPostedOn() . $topic['date_time'] . '.</p>';
-                if ($topic['username'] === $_SESSION['username']) {
+                if (array_key_exists('username', $_SESSION) && $topic['username'] === $_SESSION['username']) {
                     echo '<div class="btn-group">';
                     echo '<button type="button" class="btn btn-default">' . $lang->getEditButton() . '</button>';
                     echo '<button type="button" class="btn btn-default">' . $lang->getDeleteButton() . '</button>';

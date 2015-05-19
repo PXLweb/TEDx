@@ -37,7 +37,7 @@ class ForumManager extends CI_Model {
     }
 
     public function getPosts($topicId) {
-        $sql = 'SELECT post_id, title, content, date_time, topic_id, posted_by, guest_name, username FROM posts ' .
+        $sql = 'SELECT post_id, content, date_time, topic_id, posted_by,guest_name, username FROM posts ' .
                 'JOIN users AS u ON posted_by = user_id ' .
                 'where topic_id = ' . $topicId . ';';
         $query = $this->db->query($sql);

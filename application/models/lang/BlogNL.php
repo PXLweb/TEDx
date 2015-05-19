@@ -21,7 +21,7 @@ class BlogNL {
     private $nameLabel = 'Naam *';
     private $emailLabel = 'Emailadres *';
     private $websiteLabel = 'Website';
-    private $commentLabel = 'Commentaar *';
+    private $commentLabel = 'Commentaar';
     private $postCommentButton = 'Plaats commentaar';
 //    Warnings
     private $nameWarning = "Geen geldige naam.";
