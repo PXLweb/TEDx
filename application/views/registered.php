@@ -1,19 +1,7 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8" />
-        <title><?php echo basename(__FILE__); ?></title>
-        <style type="text/css">
-
-        </style>
-    </head>
-    <body>
-        <h1>Geregistreerd :)</h1>
-        <?php
-        if (isset($post)) {
-            var_dump($post);
-        }
-        ?>
-        
-    </body>
-</html>
+<div class="container">
+    <h1 class="text-center">Succesvol geregistreerd</h1>
+    <?php
+    echo '<p class="text-center"><a class="btn btn-lg btn-primary" href="' . site_url('login') . '">Inloggen</a>' .
+    '<a style="margin-left: 10px;" class="btn btn-lg btn-primary" href="' . site_url() . '">Home</a></p>';
+    ?>
+</div>

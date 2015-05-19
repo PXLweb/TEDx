@@ -14,7 +14,7 @@
                 'id' => 'myForm'
             ]);
             ?>
-            
+
             <!--Title-->
             <div class="form-group">
                 <label for="subject"><?php echo $lang->getTitleLabel(); ?></label>
@@ -36,16 +36,16 @@
                 echo '<p my-error">' . $lang->getOnlyUsersWarning() . '</p>';
                 echo '<p><a class="btn btn-lg btn-primary" href="' . site_url('login') . '">' . $lang->getLoginButton() . '</a></p>';
             } else {
-                echo '<p>' . 
-                        '<input type="submit" class="btn btn-lg btn-primary" value="' . $lang->getNewButton() . '" /></p>';
+                echo '<p>' .
+                '<input type="submit" class="btn btn-lg btn-primary" value="' . $lang->getNewButton() . '" /></p>';
             }
-           
             ?>
             </form>
         </div>
 
         <!--Topics dashboard-->
         <div class="col-sm-7 blog-main">
+            <!--<h3><a>test</a></h3><a href="#"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>-->
             <?php
             $forumActionLink = site_url('forum') . '/posts/';
             if (empty($topics)) {
@@ -53,14 +53,12 @@
             }
 
             foreach ($topics as $topic) {
-                echo '<a href="' . $forumActionLink . $topic['topic_id'] . '"><h3>' . $topic['subject'] . '</h3></a>';
-                echo '<p>' . $lang->GetPostedBy() . $topic['username'] . $lang->GetPostedOn() . $topic['date_time'] . '.</p>';
+                echo '<h3 style="display: inline;"><a href="' . $forumActionLink . $topic['topic_id'] . '">' . $topic['subject'] . '</a></h3>';
                 if (array_key_exists('username', $_SESSION) && $topic['username'] === $_SESSION['username']) {
-                    echo '<div class="btn-group">';
-                    echo '<button type="button" class="btn btn-default">' . $lang->getEditButton() . '</button>';
-                    echo '<button type="button" class="btn btn-default">' . $lang->getDeleteButton() . '</button>';
-                    echo '</div>';
+                    echo '<a href="' . site_url('forum') . '/editTopic/' . $topic['topic_id'] . '"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a>'
+                    . '<a href="' . site_url('forum') . '/deleteTopic/' . $topic['topic_id'] . '" "><span class="glyphicon glyphicon-trash" aria-hidden="true"></span></a>';
                 }
+                echo '<p>' . $lang->GetPostedBy() . $topic['username'] . $lang->GetPostedOn() . $topic['date_time'] . '.</p>';
             }
             ?>
         </div>

@@ -25,8 +25,7 @@
                     echo '<p>' . $post['content'] . '</p>';
                     echo '</div>';
                 }
-            }
-            
+            }  
             ?>
 
             <nav class="hidden">
