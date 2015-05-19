@@ -37,8 +37,8 @@ class Forum extends CI_Controller {
     function posts($topic_id) {
 //        Load data.
         $viewDataPosts = $this->dataGenerator->getViewData('posts', 'nl');
-        $_SESSION['topicId'] = $topic_id;
-        $_SESSION['topicSubject'] = $this->forumManager->getTopicSubject($topic_id);
+        $_SESSION['topic_id'] = $topic_id;
+        $_SESSION['subject'] = $this->forumManager->getTopicSubject($topic_id);
         $viewDataPosts['posts'] = $this->forumManager->getPosts($topic_id);
 
 //        Load views.
@@ -90,7 +90,7 @@ class Forum extends CI_Controller {
 
     function postComment() {
         // Assemble row for posts table.
-        $postRowData = $this->generatePostRow($this->input->post(NULL, TRUE));
+        $postRowData = $this->generateCommentRow($this->input->post(NULL, TRUE));
 
         $insertedRows = $this->forumManager->postComment($postRowData);
         if ($insertedRows == 1) {
