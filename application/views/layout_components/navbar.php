@@ -18,6 +18,7 @@
                 <li><a href="<?php echo $navbar->getContactRoute(); ?>"><?php echo $navbar->getMenuContact(); ?></a></li>
                 <li><a href="<?php echo $navbar->getLoginRoute(); ?>"><?php echo $navbar->getMenuLogin(); ?></a></li>
                 <li><a href="<?php echo $navbar->getRegisterRoute(); ?>"><?php echo $navbar->getMenuRegister(); ?></a></li>
+                <li><form method="get" action="results.php"><input type="text" name="search"><button type="submit">Search</button></form></li>
             </ul>
             <?php
             if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == TRUE) {

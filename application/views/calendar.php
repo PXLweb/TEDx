@@ -130,7 +130,7 @@
                 $speaker = $_POST['Speaker'];
                 $location = $_POST['Location'];
                 $date = $day . "/" . $month . "/" . $year;
-                $db = new PDO('mysql:host=localhost;dbname=tedx;charset=UTF8', 'test', 'Vbox2013'); // connectie maken met de database
+                $db = new PDO('mysql:host=localhost;dbname=tedx;charset=UTF8', 'pxluser', 'pxl'); // connectie maken met de database
                 $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION); //exception opgooien als er iets mis gaat
                 $sqlinsert = "insert into events (event_name, speaker, location, date_time) values('" . $name . "','" . $speaker . "','" . $location . "','" . $date . "')";
                 $stmt = $db->query($sqlinsert); //query statement
