@@ -28,6 +28,7 @@ class Profiel extends CI_Controller {
 
     public function index() {
         $this->load->model('UserModel');
+        $this->load->library('upload');
         $this->load->view('layout_components/header', $this->viewData);
         $this->load->view('layout_components/navbar', $this->navData);
         $this->data['user'] = $this->UserModel->getUser($_SESSION["username"]); // calling User model method getUser()
