@@ -88,7 +88,8 @@ class Forum extends CI_Controller {
         }
     }
 
-    function postComment($post) {
+    function postComment() {
+        $post = $this->input->post(NULL, TRUE);
         $_SESSION['comment_id'] = $this->forumManager->postComment($post);
         if ($_SESSION['comment_id'] > 1) {
             redirect('forum/posts/' . $_SESSION['topic_id']);
