@@ -11,8 +11,6 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-mysql_connect("localhost", "pxluser", "pxl") or die(mysql_error()); 
-mysql_select_db("tedx") or die(mysql_error());
 
 $clean = mysql_real_escape_string($_GET['search']);
 $events = mysql_query("SELECT * FROM events WHERE event_name = '$clean'") or die(mysql_error());
