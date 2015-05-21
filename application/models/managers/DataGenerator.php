@@ -68,7 +68,7 @@ class DataGenerator extends CI_Model {
 
                 if ($lang === 'nl') {
                     $this->load->model('lang/Register_nl');
-                    $data['lang'] = new Register_nl();
+                    $data['lang'] = new Register_nl();// lang
                     return $data;
                 } else if ($lang === 'en') {
                     $this->load->model('lang/Register_en');
@@ -117,9 +117,19 @@ class DataGenerator extends CI_Model {
                     $data['lang'] = new Forum_en();
                     return $data;
                 }
+             case 'events':
+                $cssLinkPosts = site_url('assets/css/posts.css');
+                $data['cssLinks']['posts'] = '<link rel="stylesheet" href="' . $cssLinkPosts . '" />';
 
-            default:
-                return $data;
+                if ($lang === 'nl') {
+                    $this->load->model('lang/Events_nl');
+                    $data['lang'] = new Events_nl();
+                    return $data;
+                } else if ($lang === 'en') {
+                    $this->load->model('lang/Events_en');
+                    $data['lang'] = new Events_en();
+                    return $data;
+                }
         }
     }
 
