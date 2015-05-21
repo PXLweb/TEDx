@@ -23,7 +23,8 @@ class Navbar_nl extends CI_Model {
     private $menuForum = 'Forum';
     private $forumRoute;
     private $profileRoute = 'profiel';
-
+    private $menuSearch = 'search';
+    private $searchRoute;
     public function __construct() {
         parent::__construct();
         $this->homeRoute = site_url('home');
@@ -34,8 +35,26 @@ class Navbar_nl extends CI_Model {
         $this->eventsRoute = site_url('events');
         $this->forumRoute = site_url('forum');
         $this->profileRoute = site_url('profiel');
+        $this->searchRoute =  site_url('search');
+        
+    }
+     public function getMenuSearch() {
+        return $this->menuSearch;
     }
 
+    public function setMenuSearch($menuSearch) {
+        $this->menuSearch = $menuSearch;
+        return $this;
+    }
+
+     public function getSearchRoute() {
+        return $this->searchRoute;
+    }
+
+    public function setSearchRoute($searchRoute) {
+        $this->searchRoute = $searchRoute;
+        return $this;
+    }
     public function getProfileRoute() {
         return $this->profileRoute;
     }

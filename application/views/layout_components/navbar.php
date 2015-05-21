@@ -18,7 +18,8 @@
                 <li><a href="<?php echo $navbar->getContactRoute(); ?>"><?php echo $navbar->getMenuContact(); ?></a></li>
                 <li><a href="<?php echo $navbar->getLoginRoute(); ?>"><?php echo $navbar->getMenuLogin(); ?></a></li>
                 <li><a href="<?php echo $navbar->getRegisterRoute(); ?>"><?php echo $navbar->getMenuRegister(); ?></a></li>
-                <li><form method="get" action="resultatenZoekOpdracht.php"><input type="text" name="search"><button type="submit">Search</button></form></li>
+                <li><a href="<?php echo $navbar->getSearchRoute(); ?>"><?php echo $navbar->getMenuSearch(); ?></a></li>
+                
             </ul>
             <?php
             if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == TRUE) {

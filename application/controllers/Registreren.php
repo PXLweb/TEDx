@@ -71,7 +71,7 @@ class Registreren extends CI_Controller {
         }
     }
 
-    function CheckUserAndEmail() {
+    function CheckUserAndEmail() {// username checkt of email. gooit die een erorr
         if ($this->userManager->userExists($this->userData['username'])) {
             $this->formData['userExistsError'] = $this->formData['lang']->getUserNameInUseWarning();
         }
@@ -80,7 +80,7 @@ class Registreren extends CI_Controller {
         }
     }
 
-    function createUserDataFromPost() {
+    function createUserDataFromPost() {// post van view registren form 
         $userData = [
             'username' => $this->input->post('userName'),
             'password' => password_hash($this->input->post('password'), PASSWORD_BCRYPT),

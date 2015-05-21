@@ -8,12 +8,12 @@
             'data-toggle' => 'validator',
             'role' => 'form',
             'id' => 'myForm'
-        ]);
+        ]);// 
         ?>
 
         <!--Form header-->
         <h2 class="form-signin-heading">
-            <?php echo $lang->getFormHeader(); ?>
+            <?php echo $lang->getFormHeader(); ?>//lang dient om te labelen 
         </h2>
 
         <!--Errors (if there are error)-->
@@ -109,7 +109,7 @@
         </div>
 
         <!--Submit-->
-        <button class="btn btn-lg btn-primary btn-block" type="submit"><?php echo $lang->getRegisterBtn(); ?></button>
+        <button class="btn btn-lg btn-primary btn-block" type="submit"><?php echo $lang->getRegisterBtn(); ?></button><!--php code is de naam die op de button staat  -->
         </form>
     </div> <!-- /container -->
 </div>
