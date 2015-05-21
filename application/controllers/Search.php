@@ -33,9 +33,9 @@ class Search extends CI_Controller {
         $search_term = $this->input->post('search');
 
         // Use a model to retrieve the results.
-        $dataEvents['results'] = $this->search_model->get_resultsEvents($search_term);
-        $dataForumPost['results'] = $this->search_model->get_resultsForumPost($search_term);
-        $dataForumTopics['results'] = $this->search_model->get_resultForumTopics($search_term);
+        $dataEvents['Events'] = $this->search_model->get_resultsEvents($search_term);
+        $dataForumPost['Posts'] = $this->search_model->get_resultsForumPost($search_term);
+        $dataForumTopics['Topics'] = $this->search_model->get_resultForumTopics($search_term);
         
         $data['resultaten'] = array($dataEvents, $dataForumPost,$dataForumTopics );
         // Pass the results to the view.
