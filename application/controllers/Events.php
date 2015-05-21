@@ -23,6 +23,8 @@ class Events extends CI_Controller {
     }
 
     public function nieuw(){
-        echo($this->input->get());
+        $this->load->library('calendar');
+        echo $this->calendar->generate();
     }
+    
 }
