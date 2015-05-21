@@ -57,7 +57,7 @@ class UserManager extends CI_Model {
 
     function extractRole(&$userData) {
         $role = $userData['role_name'];
-        unset($userData['role_name']);
+        unset($userData['role_name']);// verwijderd waarde 
         return $role;
     }
 

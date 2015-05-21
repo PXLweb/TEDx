@@ -1,14 +1,13 @@
 <!--SCRIPTS-->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript" ></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript" ></script>
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js" type="text/javascript" ></script>
-<script src="<?php echo site_url('assets/docs/dist/js/bootstrap.min.js') ?>"></script>
+
 <script src="<?php echo site_url('assets/docs/assets/js/vendor/holder.min.js') ?>"></script>
 <!--IE10 viewport hack for Surface/desktop Windows 8 bug -->
 <script src="<?php echo site_url('assets/docs/assets/js/ie10-viewport-bug-workaround.js') ?>"></script>
 
-<script src="<?php echo site_url('assets/dist/js/jquery-1.11.3.js'); ?>" ></script>
-<script src="<?php echo site_url('assets/dist/js/jquery-2.1.3.js'); ?>" ></script>
+
 
 <?php
 if ($lang->getViewName() == 'register' ||
