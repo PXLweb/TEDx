@@ -65,8 +65,8 @@ $query_builder = TRUE;
 $db['default'] = array(
 	'dsn'	=> 'mysql:host=localhost;dbname=tedx',
 	'hostname' => 'localhost',
-	'username' => 'pxluser',
-	'password' => 'pxl',
+	'username' => 'root',
+	'password' => 'toor',
 	'database' => 'tedx',
 	'dbdriver' => 'pdo',
 	'dbprefix' => '',
