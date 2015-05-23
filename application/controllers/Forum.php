@@ -12,8 +12,10 @@ class Forum extends CI_Controller {
     function __construct() {
         parent::__construct();
         // Initialize managers.
+        $this->load->helper('captcha');
         $this->load->model('managers/DataGenerator');
         $this->load->model('managers/ForumManager');
+        $this->load->model('managers/Captcha');
         $this->dataGenerator = new DataGenerator();
         $this->forumManager = new ForumManager();
 
@@ -40,6 +42,11 @@ class Forum extends CI_Controller {
         $_SESSION['topic_id'] = $topic_id;
         $_SESSION['subject'] = $this->forumManager->getTopicSubject($topic_id);
         $viewDataPosts['posts'] = $this->forumManager->getPosts($topic_id);
+
+        $captcha = new Captcha();
+        $cap = create_captcha($captcha->createData());
+        var_dump($cap);
+        $viewDataPosts['captcha'] = $cap;
 
 //        Load views.
         $this->load->view('layout_components/header', $viewDataPosts);

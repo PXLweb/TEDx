@@ -3,6 +3,13 @@
         <h1 class="blog-title"><?php echo $_SESSION['subject'] ?></h1>
 <!--        <p class="lead blog-description">The official example template of creating a blog with Bootstrap.</p>-->
     </div>
+    
+    <div class="row">
+        <?php 
+        var_dump($captcha);
+//        echo $captcha['image']; 
+        ?>
+    </div>
 
     <div class="row">
         <div class="col-sm-8 blog-main">
