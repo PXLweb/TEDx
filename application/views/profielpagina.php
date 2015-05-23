@@ -12,14 +12,15 @@ and open the template in the editor.
     <body>
       
         <h1>uw gegevens</h1>
+        <h2><?php foreach ($user as $arr) { $persoon = $arr; }       ?> </h2>
         <div>
-            username: <?php echo $user['username'];?></br>
-             voornaam: <?php echo $user['firstname']?></br>
-             achternaam: <?php echo $user['lastname'];?></br>
-             emailadres: <?php echo $user['email']?></br>
-             taal: <?php echo $user['taal']?></br>
-             gsm nummer: <?php echo $user['cellphone']?></br>
-             telefoonnummer: <?php echo $user['telephone']?></br>
+            username: <?php echo $persoon['username'];?></br>
+             voornaam: <?php echo $persoon['firstname']?></br>
+             achternaam: <?php echo $persoon['lastname'];?></br>
+             emailadres: <?php echo $persoon['email']?></br>
+             taal: <?php echo $persoon['lang']?></br>
+             gsm nummer: <?php echo $persoon['cellphone']?></br>
+             telefoonnummer: <?php echo $persoon['telephone']?></br>
         </div>
         <?php
         
