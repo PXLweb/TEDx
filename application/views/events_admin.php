@@ -3,10 +3,7 @@
     <head>
         
         <title><?php echo basename(__FILE__); ?></title>
-
   <meta charset="utf-8">
- 
-
         <style type="text/css">
             .calendar{
         font-family: Arial;
@@ -34,24 +31,97 @@
         font-weight: bold;
         color: red;
     }
+   html, body, #map-canvas  {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#map-canvas {
+  width:500px;
+  height:480px;
+}
     
         </style>  
-
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
+    <script>
+var geocoder;
+var map;
+var marker;
+function initialize() {
+  geocoder = new google.maps.Geocoder();
+  var latlng = new google.maps.LatLng(50.93,5.33);
+  marker=new google.maps.Marker({   
+          position: latlng
+      });
+  var mapOptions = {
+    zoom: 8,
+    center: latlng
+  }; 
+  map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);   
+}
+ 
+function codeAddress() {
+  var address = document.getElementById('address').value;
+  geocoder.geocode( { 'address': address}, function(results, status) {
+    if (status === google.maps.GeocoderStatus.OK) {
+      map.setCenter(results[0].geometry.location);
+      marker.setMap(null);
+      marker=new google.maps.Marker({
+          map: map,
+          position: results[0].geometry.location
+      });
+    } else {
+      alert('locatie bestaat niet');
+    }
+  });
+}
+google.maps.event.addDomListener(window, 'load', initialize);
+
+    </script>
+ 
     </head>
     <body>  
         <?php echo $calendar; ?>
  
   <script type="text/javascript">
+ function getDate()
+ {
+     var query = window.location.href;
+     var vars = query.length;
+     var month;
+     var year;
+     if(vars===44)
+     {
+         var str= query.substring(37);
+         var varp = str.split("/");
+         year=varp[0];
+         month=varp[1];
+     }else
+     {
+          month="05";
+          year="2015";
+     }
+    return year+"-"+month;
+     
+ }
+ 
+ 
         $(document).ready(function()
-        {
+        {  
             $('.calendar .day').click(function(){
                 day_num=$(this).find('.day_num').html();
-               $('#myModal').modal('toggle');
+                
+                document.getElementById('datum').value =getDate()+'-'+ day_num;
+                $('#myModal').modal('toggle');
+               
             });
         });
     </script>
-  
+
+    
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
@@ -63,18 +133,91 @@
           <p>Event toeveogen,aanpassen of verwijderen</p>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Add</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Edit</button>
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button  class="btn btn-default" data-toggle="modal" data-dismiss="modal" href="#stack2" >Add</button>
+          <button  class="btn btn-default" data-toggle="modal" data-dismiss="modal" href="#stack3">Edit</button>
+          <button  class="btn btn-default" data-dismiss="modal">Close</button>
         </div>
           <div class="modal-footer">   
         </div>
       </div> 
     </div>
   </div>
+
+
+ <?php echo form_open('events/create',[
+                    'class' => 'form-group',
+                    'data-toggle' => 'validator',
+                    'role' => 'form',
+                    'id' => 'myForm'
+                ]); ?>
   
+<div id="stack2" class="modal fade" tabindex="-1" data-focus-on="input:first">
+    
+   <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+      
+        <div class="modal-body" >
+          
+           
+            <div>
+          <input name="eventnaam" id="name" type="textbox" value="event naam"/>
+          <input name="speaker" id="Speaker" type="textbox" value="spreker"/>
+          <input name="location" id="location" type="textbox" value="Hasselt"/>
+          <input name="date" id="datum" type="text" hidden="true" value="" />
+          <input type="button" value="bestaat locatie" onclick="codeAddress()"/>
+            </div>
+            
+            
+          <div id="map-canvas" style="width:500px;height:180px;" ></div>
+        </div>
+          
+        <div class="modal-footer">
+           <input type="submit" class="btn btn-default" name="submit" value="voeg toe" id="myButton" />
+         
+          <button  class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+           
+      </div> 
+    </div>
 
+</div>
+  <?php echo form_close(); ?> 
+  
+  
+  <div id="stack3" class="modal fade" tabindex="-1" data-focus-on="input:first">
+    
+   <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+      
+        <div class="modal-body" >
+          
+           
+            <div>
+          <input name="eventnaam" id="name" type="textbox" value="event naam"/>
+          <input name="speaker" id="Speaker" type="textbox" value="spreker"/>
+          <input name="location" id="location" type="textbox" value="Hasselt"/>
+          <input name="date" id="datum" type="text" hidden="true" value="" />
+          <input type="button" value="bestaat locatie" onclick="codeAddress()"/>
+            </div>
+            
+            
+          <div id="map-canvas" style="width:500px;height:180px;" ></div>
+        </div>
+          
+        <div class="modal-footer">
+           <input type="submit" class="btn btn-default" name="submit" value="voeg toe" id="myButton" />
+         
+          <button  class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+           
+      </div> 
+    </div>
 
+</div>
 
     
     </body>

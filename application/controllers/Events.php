@@ -8,6 +8,8 @@ class Events extends CI_Controller {
     private $navData;
     private $eventManager;
     private $formData;
+    private $years; 
+   
     
     public function __construct() {
         parent::__construct();
@@ -15,7 +17,7 @@ class Events extends CI_Controller {
         $dataGenerator = new DataGenerator();
         $this->load->model('managers/EventManager');
         $this->eventManager = new EventManager();
-        $this->formData = (new DataGenerator)->getViewData('Events', 'nl');
+        $this->formData = $dataGenerator->getViewData('Events', 'nl');
         $this->viewData = $dataGenerator->getViewData('header', NULL);
         $this->navData = $dataGenerator->getViewData('navbar', 'nl');
     }
@@ -27,14 +29,30 @@ class Events extends CI_Controller {
     public function Create(){
         $this->config->set_item('language', 'dutch'); // dutch error messages
         $this->load->library('form_validation');
+        $this->load->helper('form');
         
+          
+            $data = array(
+
+        'event_name' => $this->input->post('eventnaam'),
+        'speaker' => $this->input->post('speaker'),
+        'location' => $this->input->post('location'),
+        'date_time' =>$this->input->post('date')
+                 );
+            
+        
+         
+
+        $this->eventManager->add_calendar_data($data);
+       $this->display();
         
     }
     public function display($year=null,$month=null)
     {
-        $this->viewData['events'] = $this->eventManager->getEvents();
+        $this->viewData['events'] = $this->eventManager->get_calendar_data($year, $month);
         if (array_key_exists('role_name', $_SESSION)&& $_SESSION['role_name'] == 'Administrator') 
             {
+            
                 $data['calendar']=$this->eventManager->generate($year,$month);
                 $this->load->view('events_admin',$data);      
             }else
@@ -43,6 +61,8 @@ class Events extends CI_Controller {
                 $this->load->view('events',$data); 
                
             }
+           $this->years= $year."-".$month."-";
+             
         $this->load->view('layout_components/header', $this->viewData);
         $this->load->view('layout_components/navbar', $this->navData);
         

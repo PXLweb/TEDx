@@ -37,19 +37,7 @@
         
         <?php echo $calendar; ?>
        
-         <?php
-         
-          
-               /* foreach ($events as $event)
-                    {
-                        echo 'Name: '          . $event['event_name']       . '<br />';
-                        echo 'Speaker: '        . $event['speaker']         . '<br />';
-                        echo 'Location: ' . $event['location']  . '<br />';
-                        echo 'Date: ' . $event['date_time']  . '<br /><br />';
-                    }*/
-                
-            
-            ?>
+        
          
     </body>
 </html>

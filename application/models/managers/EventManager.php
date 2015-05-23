@@ -24,13 +24,13 @@ class EventManager extends CI_Model {
             {heading_row_start}<tr>{/heading_row_start}
 
             {heading_previous_cell}<th><a href="{previous_url}">&lt;&lt;</a></th>{/heading_previous_cell}
-            {heading_title_cell}<th colspan="{colspan}">{heading}</th>{/heading_title_cell}
+            {heading_title_cell}<th class="month" colspan="{colspan}">{heading}</th>{/heading_title_cell}
             {heading_next_cell}<th><a href="{next_url}">&gt;&gt;</a></th>{/heading_next_cell}
 
             {heading_row_end}</tr>{/heading_row_end}
 
             {week_row_start}<tr>{/week_row_start}
-            {week_day_cell}<td>{week_day}</td>{/week_day_cell}
+            {week_day_cell}<td >{week_day}</td>{/week_day_cell}
             {week_row_end}</tr>{/week_row_end}
 
             {cal_row_start}<tr class="days">{/cal_row_start}
@@ -67,11 +67,7 @@ class EventManager extends CI_Model {
         return $query->result_array();
         
     }
-    public function create($event)
-    {
-        $this->db->insert('', $userData);
-           
-    }
+   
     public function get_calendar_data($year,$month)// alle evenmenten laden
     {
         $query=$this->db->select('date_time,event_name,location,speaker')->from('events')
@@ -79,31 +75,40 @@ class EventManager extends CI_Model {
         $cal_data =array();
         foreach ($query ->result() as $row)
         {
-            $cal_data[substr($row->date_time,8,2)] = $row->event_name;
-            
-            
+            $getal=substr($row->date_time,8,2);
+            if ($getal>=10)
+            {
+                $cal_data[substr($row->date_time,8,2)] = $row->event_name;
+                
+            }else 
+            {
+                $cal_data[substr($row->date_time,9,1)] = $row->event_name;
+            }
+                
+               
         }
         return $cal_data;
     }
-    public function add_calendar_data($date_time, $event_name, $speaker, $location)
+    public function add_calendar_data($data)
     {
-        $this->db->insert('events', array(
-            'date_time'=>$date_time,
-            'event_name'=>$event_name,
-            'speaker'=>$speaker,
-            'location'=>$location   
-        ));
+        $this->db->insert('events', $data);
                 
     }
     public function generate($year,$month)
     {
-       
+        $yearNow= date("Y");
+        $monthNow=date("m");
         $this->config->set_item('language', 'dutch');//omdat er languages zijn ..
         $this->load->library('calendar',$this->conf);
-        $cal_data=$this->get_calendar_data($year, $month);
-       
+        if($year==null && $month==null)
+        {
+            $cal_data=$this->get_calendar_data($yearNow, $monthNow);
+        }else
+        {
+            $cal_data=$this->get_calendar_data($year, $month);
+        }
         
-        
+           
         return $this->calendar->generate($year,$month,$cal_data);
     }
 }
