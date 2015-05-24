@@ -8,7 +8,7 @@ class Events extends CI_Controller {
     private $navData;
     private $eventManager;
     private $formData;
-    private $years; 
+
    
     
     public function __construct() {
@@ -44,7 +44,7 @@ class Events extends CI_Controller {
          
 
         $this->eventManager->add_calendar_data($data);
-       $this->display();
+        $this->display();
         
     }
     public function display($year=null,$month=null)
@@ -61,13 +61,23 @@ class Events extends CI_Controller {
                 $this->load->view('events',$data); 
                
             }
-           $this->years= $year."-".$month."-";
+           
              
         $this->load->view('layout_components/header', $this->viewData);
         $this->load->view('layout_components/navbar', $this->navData);
-        
         $this->load->view('layout_components/footer');
     }
+    
+    public function getData()
+    {
+        $id = $this->input->post('my_id');
+        $this->viewData['events'] = $this->eventManager->getEvent($id);
+        $this->load->view('layout_components/header', $this->viewData);
+        $this->load->view('layout_components/navbar', $this->navData);
+        $this->load->view('layout_components/footer');
+    }
+    
+    
     
     
 
