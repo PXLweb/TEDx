@@ -71,10 +71,14 @@ class Events extends CI_Controller {
     public function getData()
     {
         $id = $this->input->post('my_id');
+        var_dump($this->input->post('my_id'));
         $this->viewData['events'] = $this->eventManager->getEvent($id);
         $this->load->view('layout_components/header', $this->viewData);
         $this->load->view('layout_components/navbar', $this->navData);
         $this->load->view('layout_components/footer');
+        echo('jos');
+        $data['datum'] = '11/11/2011';
+        $this->load->view('illysView', $data); // In uw view, echo $datum geeft 11/11/2011
     }
     
     
