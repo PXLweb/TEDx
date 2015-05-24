@@ -137,8 +137,8 @@ google.maps.event.addDomListener(window, 'load', initialize);
          
             
             
-                <input name="my_id" id="datum" type="text" hidden="true" value="" />
-               
+                <input name="my_id" id="datum" type="text"  value="" />
+               <?php var_dump($data); ?> 
             
          
              <div id="map-canvas" style="width:500px;height:180px;" ></div>
