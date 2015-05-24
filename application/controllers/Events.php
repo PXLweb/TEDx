@@ -49,37 +49,26 @@ class Events extends CI_Controller {
     }
     public function display($year=null,$month=null)
     {
-        $this->viewData['events'] = $this->eventManager->get_calendar_data($year, $month);
+       
         if (array_key_exists('role_name', $_SESSION)&& $_SESSION['role_name'] == 'Administrator') 
             {
-            
+             
+            $this->viewData['events'] = $this->eventManager->get_calendar_data($year, $month);
                 $data['calendar']=$this->eventManager->generate($year,$month);
                 $this->load->view('events_admin',$data);      
             }else
             {          
-                $data['calendar']=$this->eventManager->generate($year,$month);
+                $data['events']=$this->eventManager->getEvents();
                 $this->load->view('events',$data); 
-               
+              
             }
-           
-             
+                    
         $this->load->view('layout_components/header', $this->viewData);
         $this->load->view('layout_components/navbar', $this->navData);
         $this->load->view('layout_components/footer');
     }
     
-    public function getData()
-    {
-        $id = $this->input->post('my_id');
-        var_dump($this->input->post('my_id'));
-        $this->viewData['events'] = $this->eventManager->getEvent($id);
-        $this->load->view('layout_components/header', $this->viewData);
-        $this->load->view('layout_components/navbar', $this->navData);
-        $this->load->view('layout_components/footer');
-        echo('jos');
-        $data['datum'] = '11/11/2011';
-        $this->load->view('illysView', $data); // In uw view, echo $datum geeft 11/11/2011
-    }
+    
     
     
     

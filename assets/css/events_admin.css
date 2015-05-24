@@ -1,0 +1,37 @@
+            .calendar{
+        font-family: Arial;
+        font-size: 12px;
+        
+    }
+    table.calendar{
+        margin: auto;
+        border-collapse: collapse;
+    }
+    .calendar .days td{
+        width: 80px;
+        height: 80px;
+        padding: 4px;
+        border: 1px solid #999;
+        vertical-align: top;
+        background-color: #DEF;
+    }
+    .calendar .days td:hover
+    {
+        background-color: #FFF;
+        
+    }
+    .calendar .highlight {
+        font-weight: bold;
+        color: red;
+    }
+   html, body, #map-canvas  {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#map-canvas {
+  width:500px;
+  height:480px;
+}
+    
