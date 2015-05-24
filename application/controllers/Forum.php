@@ -45,7 +45,6 @@ class Forum extends CI_Controller {
 
         $captcha = new Captcha();
         $cap = create_captcha($captcha->createData());
-        var_dump($cap);
         $viewDataPosts['captcha'] = $cap;
 
 //        Load views.
