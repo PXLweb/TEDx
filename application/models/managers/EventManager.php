@@ -111,4 +111,14 @@ class EventManager extends CI_Model {
            
         return $this->calendar->generate($year,$month,$cal_data);
     }
+    
+    public function getEvent($date)
+    {
+       
+    $this->db->select("*");
+    $this->db->from('events');
+    $this->db->where('date_time', $date);
+    $query = $this->db->get();
+    return $query->result_array();
+    }
 }

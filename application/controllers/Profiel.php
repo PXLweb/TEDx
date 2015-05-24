@@ -33,7 +33,7 @@ class Profiel extends CI_Controller {
         $this->load->view('layout_components/header', $this->viewData);
         $this->load->view('layout_components/navbar', $this->navData);
         $this->data['user'] = $this->UserModel->getUser($_SESSION["username"]); // calling User model method getUser()
-   $this->load->view('profielpagina', $this->data); // load the view file , we are passing $data array to view file
-$this->load->view('layout_components/footer');
+        $this->load->view('profielpagina', $this->data); // load the view file , we are passing $data array to view file
+        $this->load->view('layout_components/footer');
     }
 }

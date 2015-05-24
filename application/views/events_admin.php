@@ -64,7 +64,7 @@ function initialize() {
 }
  
 function codeAddress() {
-  var address = document.getElementById('address').value;
+  var address = document.getElementById('location').value;
   geocoder.geocode( { 'address': address}, function(results, status) {
     if (status === google.maps.GeocoderStatus.OK) {
       map.setCenter(results[0].geometry.location);
@@ -115,7 +115,9 @@ google.maps.event.addDomListener(window, 'load', initialize);
                 day_num=$(this).find('.day_num').html();
                 
                 document.getElementById('datum').value =getDate()+'-'+ day_num;
-                $('#myModal').modal('toggle');
+                
+             
+            $('#myModal').modal('toggle');
                
             });
         });
@@ -151,7 +153,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
                     'id' => 'myForm'
                 ]); ?>
   
-<div id="stack2" class="modal fade" tabindex="-1" data-focus-on="input:first">
+  <div id="stack2" class="modal fade" tabindex="-1" data-focus-on="input:first" >
     
    <div class="modal-dialog">
     
@@ -161,12 +163,12 @@ google.maps.event.addDomListener(window, 'load', initialize);
         <div class="modal-body" >
           
            
-            <div>
+           <div onload="codeAddress()">
           <input name="eventnaam" id="name" type="textbox" value="event naam"/>
           <input name="speaker" id="Speaker" type="textbox" value="spreker"/>
-          <input name="location" id="location" type="textbox" value="Hasselt"/>
-          <input name="date" id="datum" type="text" hidden="true" value="" />
-          <input type="button" value="bestaat locatie" onclick="codeAddress()"/>
+          <input name="location" id="location" type="textbox" value="Hasselt" onchange="codeAddress()"/>
+          <input name="date" id="datum" type="text" hidden="true" value=""  />
+         
             </div>
             
             
@@ -186,39 +188,7 @@ google.maps.event.addDomListener(window, 'load', initialize);
   <?php echo form_close(); ?> 
   
   
-  <div id="stack3" class="modal fade" tabindex="-1" data-focus-on="input:first">
-    
-   <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-      
-        <div class="modal-body" >
-          
-           
-            <div>
-          <input name="eventnaam" id="name" type="textbox" value="event naam"/>
-          <input name="speaker" id="Speaker" type="textbox" value="spreker"/>
-          <input name="location" id="location" type="textbox" value="Hasselt"/>
-          <input name="date" id="datum" type="text" hidden="true" value="" />
-          <input type="button" value="bestaat locatie" onclick="codeAddress()"/>
-            </div>
-            
-            
-          <div id="map-canvas" style="width:500px;height:180px;" ></div>
-        </div>
-          
-        <div class="modal-footer">
-           <input type="submit" class="btn btn-default" name="submit" value="voeg toe" id="myButton" />
-         
-          <button  class="btn btn-default" data-dismiss="modal">Close</button>
-        </div>
-           
-      </div> 
-    </div>
-
-</div>
-
+ 
     
     </body>
 </html>
