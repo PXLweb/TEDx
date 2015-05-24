@@ -1,0 +1,68 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 24-mei-2015, 12:20:12
+    Author     : TomMartens
+*/
+
+body {
+    min-height: 2000px;
+    padding-top: 70px;
+}
+
+#navbar{
+    overflow: inherit;
+}
+
+a.social{
+    text-align:left;
+    text-indent:-9999px;
+    width:31px;
+    height:31px;
+    float:left;
+    background:url(social-icons.png) no-repeat -1px 1px #828282;
+    margin-right:10px;
+    margin-top: 10px;
+    bottom: auto;
+    display:inline-block;
+    *display:block;}
+
+a.social.facebook{
+    background-position:-31px 0;
+}
+
+a.social.flickr{
+    background-position:-93px 0;    
+}
+
+#facebook a:hover, #facebook a:focus{
+    background-color:#3b5998;
+}
+
+#twitter a:hover, #twitter a:focus{
+    background-color:#00acee;;
+}
+
+#flickr a:hover, #flickr a:focus{
+    background-color:#ff0084;
+}
+
+@media screen and (max-width: 768px){
+    .navbar-right{
+        display: none;
+    }
+    
+    
+}
+
+@media screen and (max-width: 992px){
+    #facebook, #twitter, #flickr{
+        display: none;
+    }    
+    
+}
+
+
