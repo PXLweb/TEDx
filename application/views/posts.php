@@ -5,10 +5,6 @@
     </div>
     
     <div class="row">
-        <?php 
-        var_dump($captcha);
-//        echo $captcha['image']; 
-        ?>
     </div>
 
     <div class="row">

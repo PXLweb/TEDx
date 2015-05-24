@@ -132,12 +132,12 @@ google.maps.event.addDomListener(window, 'load', initialize);
       <div class="modal-content">
        
         <div class="modal-body">
-          <p>Event toeveogen,aanpassen of verwijderen</p>
+          <p>Event toevoegen,aanpassen of verwijderen</p>
         </div>
         <div class="modal-footer">
-          <button  class="btn btn-default" data-toggle="modal" data-dismiss="modal" href="#stack2" >Add</button>
-          <button  class="btn btn-default" data-toggle="modal" data-dismiss="modal" href="#stack3">Edit</button>
-          <button  class="btn btn-default" data-dismiss="modal">Close</button>
+          <button  class="btn btn-default" data-toggle="modal" data-dismiss="modal" href="#stack2" >Toevoegen</button>
+          <button  class="btn btn-default" data-toggle="modal" data-dismiss="modal" href="#stack3">Aanpassen</button>
+          <button  class="btn btn-default" data-dismiss="modal">Sluiten</button>
         </div>
           <div class="modal-footer">   
         </div>

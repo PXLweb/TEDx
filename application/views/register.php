@@ -13,7 +13,7 @@
 
         <!--Form header-->
         <h2 class="form-signin-heading">
-            <?php echo $lang->getFormHeader(); ?>//lang dient om te labelen 
+<!--            <?php echo $lang->getFormHeader(); ?> //lang dient om te labelen -->
         </h2>
 
         <!--Errors (if there are error)-->
