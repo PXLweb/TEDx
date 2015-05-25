@@ -19,14 +19,11 @@
                 
                 <?php
                 if (isset($_SESSION['logged_in']) == FAlSE) {
-                    echo '<li><a href="' . $navbar->getLoginRoute() . '">' .
-                    $navbar->getMenuLogin() . '</a></li>';
-                  
+                    echo '<li><a href="' . $navbar->getRegisterRoute() . '">' .
+                    $navbar->getMenuRegister() . '</a></li>';                 
                                     }
-                ?> 
-                
-                
-                
+                ?>          
+                    
                 
                 
             </ul>
@@ -35,7 +32,7 @@
                 <li id="twitter"><a class="social twitter" href="https://twitter.com/TEDxUHasselt">Twitter</a></li>
                 <li id="flickr"><a class="social flickr" href="http://www.flickr.com/photos/69639467@N06/">Flickr</a></li>
                 <li>
-                    <form class="navbar-form" role="search">
+                    <form class="navbar-form" action="http://localhost/tedx/search/execute_search" role="search" method="post">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
                             <div class="input-group-btn">
@@ -47,10 +44,15 @@
                 <?php
                 if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == TRUE) {
                     echo '<li><a href="' . $navbar->getProfileRoute() . '">' .
-                    $_SESSION['username'] . ' ingelogd</a></li>';
+                    $_SESSION['username'] . '</a></li>';
                     echo '<li><a href="' . site_url('/home/logout/') . '">' .
-                    'Uitloggen</a></li>';
+                    'Log Out</a></li>';
                                     }
+                else{
+                   echo '<li><a href="' . $navbar->getLoginRoute() . '">' .
+                    'Log in</a></li>';                    
+                    
+                }
                 ?> 
             </ul>
         </div>
