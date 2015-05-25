@@ -3,7 +3,7 @@
     <!-- Main component for a primary marketing message or call to action -->
     <div class="jumbotron" >
         <h1>Welcome to <span style="color: #d9534f">TEDx</span></h1>
-        <p>TEDxUHasselt is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.</p>
+        <p>TEDxPXL is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.</p>
         <p>
             <a class="btn btn-lg btn-danger" href="<?php echo $navbar->getEventsRoute(); ?>" role="button">Check out our events &raquo;</a>
         </p>
