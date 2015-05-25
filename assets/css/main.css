@@ -8,6 +8,37 @@ and open the template in the editor.
     Author     : TomMartens
 */
 
+.calendar{
+    font-family: Arial;
+    font-size: 12px;
+
+}
+table.calendar{
+    margin: auto;
+    border-collapse: collapse;
+}
+.calendar .days td{
+    width: 80px;
+    height: 80px;
+    padding: 4px;
+    border: 1px solid #999;
+    vertical-align: top;
+    background-color: #DEF;
+}
+.calendar .days td:hover
+{
+    background-color: #FFF;
+
+}
+.calendar .highlight {
+    font-weight: bold;
+    color: red;
+}
+
+#map-canvas {
+    width:500px;
+    height:480px;
+}
 body {
     min-height: 2000px;
     padding-top: 70px;
@@ -20,9 +51,23 @@ body {
     background-repeat: no-repeat;
     color: white;    
 }
+.col-md-4{
+    text-align: center;
+}
 
 a{
      color: red;
+}
+
+.events{       
+    float: right;
+    margin-top: 50px;    
+    
+    
+}
+
+.agenda{
+    float: left;
 }
 
 
@@ -70,10 +115,24 @@ a.social.flickr{
 
 
 
+
+
+
 @media screen and (max-width: 992px){
     #facebook, #twitter, #flickr, #search {
         display: none;
     }    
+    .events{
+       float: none;
+       text-align: center;
+   
+    }
+    .agenda{
+        width: 100%;
+        margin-bottom: 50px;
+    }
+    
+ 
     
     
 }
