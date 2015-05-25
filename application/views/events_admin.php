@@ -8,21 +8,24 @@
 <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
 <script type="text/javascript" src="<?php echo site_url('assets/js/GoogleMap.js'); ?>" ></script>  
- 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="<?php echo site_url('assets/dist/js/bootstrap.min.js');?>"></script>
     </head>
     <body>  
      <?php echo $calendar; ?>
+   
  <script type="text/javascript" src="<?php echo site_url('assets/js/cal.js'); ?>" ></script>  
- 
+
   <!-- Modal -->
   <div class="modal fade" id="myModal" role="dialog">
     <div class="modal-dialog">
     
       <!-- Modal content-->
       <div class="modal-content">
-       
+      
         <div class="modal-body">
-          <p>Event toevoegen</p>
+          
+            <p> evenment toevoegen</p>
         </div>
         <div class="modal-footer">
           <button  class="btn btn-default" data-toggle="modal" data-dismiss="modal" href="#stack2" >Toevoegen</button>
@@ -33,7 +36,7 @@
       </div> 
     </div>
   </div>
-
+ 
 
  <?php echo form_open('events/create',[
                     'class' => 'form-group',
@@ -67,5 +70,20 @@
 </div>
   <?php echo form_close(); ?> 
      
+  <?php
+         
+          
+               foreach ($events as $event)
+                    {
+                        echo 'Name: '          . $event['event_name']       . '<br />';
+                        echo 'Speaker: '        . $event['speaker']         . '<br />';
+                        echo 'Location: ' . $event['location']  . '<br />';
+                        echo 'Date: ' . $event['date_time']  . '<br /><br />';
+                    }
+                
+            
+            ?>
+  
+  
     </body>
 </html>

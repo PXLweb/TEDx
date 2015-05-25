@@ -3,7 +3,7 @@
         <h1 class="blog-title"><?php echo $_SESSION['subject'] ?></h1>
 <!--        <p class="lead blog-description">The official example template of creating a blog with Bootstrap.</p>-->
     </div>
-    
+
     <div class="row">
     </div>
 
@@ -15,7 +15,7 @@
             } else {
                 foreach ($posts as $post) {
                     echo '<div class="blog-post">';
-                    
+
 //                  Begin meta (subtitle)
                     echo '<p class="blog-post-meta">' . $lang->getPostedBy();
                     if (isset($post['guest_name'])) {
@@ -28,7 +28,7 @@
                     echo '<p>' . $post['content'] . '</p>';
                     echo '</div>';
                 }
-            }  
+            }
             ?>
 
             <nav class="hidden">
@@ -55,7 +55,7 @@
                     $role_name = $_SESSION['role_name'];
                 }
                 ?>
-                
+
                 <!--The if block show the name field, emailaddress field and the website field for guests. -->
                 <?php if (isset($role_name) && $role_name === 'Guest') { ?>
 
@@ -79,17 +79,24 @@
                         <label for="website"><?php echo $lang->getWebsiteLabel(); ?></label>
                         <input type="text" class="form-control" name="website" id="website" />
                     </div>
-                <?php }  ?>
+                <?php } ?>
 
-                    <!--Comment-->
-                    <div class="form-group">
-                        <label for="content"><?php echo $lang->getCommentLabel(); ?></label>
-                        <textarea rows="6" class="form-control" name="content" id="content" data-error="<?php echo $lang->getCommentWarning(); ?>" required></textarea>
-                        <div class="help-block with-errors"></div>
-                    </div>
+                <!--Comment-->
+                <div class="form-group">
+                    <textarea rows="6" class="form-control" name="content" id="content" data-error="<?php echo $lang->getCommentWarning(); ?>" required></textarea>
+                    <div class="help-block with-errors"></div>
+                </div>
 
-                    <!--Submit-->
-                    <input type="submit" class="btn btn-lg btn-danger btn-block" name="submit" value="<?php echo $lang->getPostCommentButton(); ?>" id="myButton" />
+                <!--Captcha-->
+                <div class="textfield form-group">
+                    <h3>Beveiligingsvraag</h3>
+                    <?php echo form_label($captcha, 'captcha'); ?>
+                    <?php echo form_error('captcha'); ?>
+                    <?php echo form_input(['name' => 'captcha', 'id' => 'captcha', 'class' => 'form-control']); ?>
+                </div>
+
+                <!--Submit-->
+                <input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="<?php echo $lang->getPostCommentButton(); ?>" id="myButton" />
             </div>   
 
         </div><!-- /.blog-main -->

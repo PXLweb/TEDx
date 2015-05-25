@@ -7,7 +7,7 @@
  */
 class EventManager extends CI_Model {
 
-    private $events='events';
+    
     private $conf;
 
     
@@ -61,12 +61,7 @@ class EventManager extends CI_Model {
             {table_close}</table>{/table_close}';
        
     }
-    public function getEvents()
-    {
-        $query = $this->db->get($this->events);
-        return $query->result_array();
-        
-    }
+   
    
     public function get_calendar_data($year,$month)// alle evenmenten laden
     {
@@ -83,9 +78,7 @@ class EventManager extends CI_Model {
             }else 
             {
                 $cal_data[substr($row->date_time,9,1)] = $row->event_name;
-            }
-                
-               
+            }   
         }
         return $cal_data;
     }
@@ -111,14 +104,25 @@ class EventManager extends CI_Model {
            
         return $this->calendar->generate($year,$month,$cal_data);
     }
-    
-    public function getEvent($date)
+     public function getEvents($year,$month)
+             
     {
+         $yearNow= date("Y");
+        $monthNow=date("m");
+         if($year==null && $month==null){
+             $query=$this->db->select('date_time,event_name,location,speaker')->from('events')
+                ->like('date_time',"$yearNow-$monthNow",'after')->get();
+         }else
+         {
+             $query=$this->db->select('date_time,event_name,location,speaker')->from('events')
+                ->like('date_time',"$year-$month",'after')->get();
+         }
        
-    $this->db->select("*");
-    $this->db->from('events');
-    $this->db->where('date_time', $date);
-    $query = $this->db->get();
-    return $query->result_array();
+       
+       
+       
+        return $query->result_array();
+        
     }
+    
 }
