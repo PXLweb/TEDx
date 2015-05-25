@@ -1,53 +1,65 @@
-<div class="navbar-wrapper">
-    <?php $cssStyleTag = 'nav {display: hidden;}'; ?>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
+
+<nav class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+
         <div class="navbar-header">
             <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
                 <span class="sr-only">Toggle navigation</span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>                                      
             </button>
             <a class="navbar-brand" href="<?php echo $navbar->getHomeRoute(); ?>"><?php echo $navbar->getBrandName(); ?></a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
+            <ul class="nav navbar-nav">                
                 <li><a href="<?php echo $navbar->getEventsRoute(); ?>"><?php echo $navbar->getMenuEvents(); ?></a></li>
                 <li><a href="<?php echo $navbar->getForumRoute(); ?>"><?php echo $navbar->getMenuForum(); ?></a></li>
                 <li><a href="<?php echo $navbar->getAboutRoute(); ?>"><?php echo $navbar->getMenuAbout(); ?></a></li>
-                <li><a href="<?php echo $navbar->getContactRoute(); ?>"><?php echo $navbar->getMenuContact(); ?></a></li>
-                <li><a href="<?php echo $navbar->getLoginRoute(); ?>"><?php echo $navbar->getMenuLogin(); ?></a></li>
-                <li><a href="<?php echo $navbar->getRegisterRoute(); ?>"><?php echo $navbar->getMenuRegister(); ?></a></li>
-
-                <li><a href="<?php echo $navbar->getSearchRoute(); ?>"><?php echo $navbar->getMenuSearch(); ?></a></li>
                 
-
-               
-
+                <?php
+                if (isset($_SESSION['logged_in']) == FAlSE) {
+                    echo '<li><a href="' . $navbar->getLoginRoute() . '">' .
+                    $navbar->getMenuLogin() . '</a></li>';
+                  
+                                    }
+                ?> 
+                
+                
+                
+                
+                
             </ul>
-            <?php
-            if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == TRUE) {
-                echo '<ul class="nav navbar-nav pull-right">';
-                echo '<li><a href="' . $navbar->getProfileRoute() . '">' .
-                $_SESSION['username'] . ' ingelogd</a></li>';
-                echo '<li><a href="' . site_url('/home/logout/') . '">' .
-                'Uitloggen</a></li>';
-                echo '</ul>';
-            }
-            ?> 
+            <ul class="nav navbar-nav navbar-right">
+                <li id="facebook"><a class="social facebook" href="https://www.facebook.com/TEDxUHasselt">Facebook</a></li>
+                <li id="twitter"><a class="social twitter" href="https://twitter.com/TEDxUHasselt">Twitter</a></li>
+                <li id="flickr"><a class="social flickr" href="http://www.flickr.com/photos/69639467@N06/">Flickr</a></li>
+                <li>
+                    <form class="navbar-form" role="search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                            </div>
+                        </div>
+                    </form>
+                </li>
+                <?php
+                if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] == TRUE) {
+                    echo '<li><a href="' . $navbar->getProfileRoute() . '">' .
+                    $_SESSION['username'] . ' ingelogd</a></li>';
+                    echo '<li><a href="' . site_url('/home/logout/') . '">' .
+                    'Uitloggen</a></li>';
+                                    }
+                ?> 
+            </ul>
         </div>
-    </nav>
-</div>
+    </div>
+</nav>
 
-<!--                    <li class="dropdown">
-                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                        <ul class="dropdown-menu" role="menu">
-                            <li><a href="#">Action</a></li>
-                            <li><a href="#">Another action</a></li>
-                            <li><a href="#">Something else here</a></li>
-                            <li class="divider"></li>
-                            <li class="dropdown-header">Nav header</li>
-                            <li><a href="#">Separated link</a></li>
-                            <li><a href="#">One more separated link</a></li>
-                        </ul>
-                    </li>-->
+
+
+
+
+
+

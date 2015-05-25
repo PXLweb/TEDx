@@ -10,10 +10,10 @@ class DataGenerator extends CI_Model {
         $model = strtolower($_model);
         $lang = strtolower($_lang);
 
-        $cssLinkFooter = site_url('assets/css/sticky-footer.css');
-        $cssLinkGlobal = site_url('assets/css/global.css');
+       /* $cssLinkFooter = site_url('assets/css/sticky-footer.css');
+        $cssLinkGlobal = site_url('assets/css/global.css'); 
         $data['cssLinks']['$cssLinkFooter'] = '<link rel="stylesheet" href="' . $cssLinkFooter . '" />';
-        $data['cssLinks']['global'] = '<link rel="stylesheet" href="' . $cssLinkGlobal . '" />';
+        $data['cssLinks']['global'] = '<link rel="stylesheet" href="' . $cssLinkGlobal . '" />'; */
 
         switch ($model) {
             case 'header':

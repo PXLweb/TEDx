@@ -9,8 +9,8 @@ if(!isset($_SESSION)){
     <head>
         <title><?php echo $lang->getPageTitle(); ?></title>
         <link rel="icon" href="../../favicon.ico">
-        <link rel="stylesheet" href="<?php echo site_url('assets/dist/css/bootstrap.css'); ?>" />
-        <link rel="stylesheet" href="<?php echo site_url('assets/dist/css/bootstrap-theme.css'); ?>" />
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
+        <link rel="stylesheet" href="newLayout/main.css" />
         <?php
         if (isset($cssLinks)) {
             foreach($cssLinks as $link){
