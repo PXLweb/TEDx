@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 
 
 <!DOCTYPE html>
@@ -12,10 +13,16 @@
     </head>
     <body>  
   <div class="container"> 
+=======
+<div class="container"> 
+>>>>>>> 6783fd3d0d9bf4b6c949fc40ddebc77567f91b16
     <div class="agenda">
 <?php echo $calendar; ?>
     </div>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 6783fd3d0d9bf4b6c949fc40ddebc77567f91b16
 
     <div class="events">
         <?php
@@ -30,9 +37,10 @@
     </div>
 </div>
 
+<<<<<<< HEAD
+
+=======
+>>>>>>> 6783fd3d0d9bf4b6c949fc40ddebc77567f91b16
 
 
-
-    </body>
-</html>
 

@@ -96,7 +96,7 @@
                 </div>
 
                 <!--Submit-->
-                <input type="submit" class="btn btn-lg btn-primary btn-block" name="submit" value="<?php echo $lang->getPostCommentButton(); ?>" id="myButton" />
+                <input type="submit" class="btn btn-lg btn-danger btn-block" name="submit" value="<?php echo $lang->getPostCommentButton(); ?>" id="myButton" />
             </div>   
 
         </div><!-- /.blog-main -->
