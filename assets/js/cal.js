@@ -24,11 +24,13 @@
         {  
             $('.calendar .day').click(function(){
                 day_num=$(this).find('.day_num').html();
-                
                 document.getElementById('datum').value =getDate()+'-'+ day_num;
-                
+              
+                 $('#myModal').modal('toggle');
              
-            $('#myModal').modal('toggle');
+            
                
             });
         });
+        
+ 

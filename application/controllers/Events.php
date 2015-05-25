@@ -23,6 +23,7 @@ class Events extends CI_Controller {
     }
 
     public function index($year=null,$month=null) {
+        
         $this->display($year, $month);
     }
 
@@ -49,24 +50,32 @@ class Events extends CI_Controller {
     }
     public function display($year=null,$month=null)
     {
+      
        
         if (array_key_exists('role_name', $_SESSION)&& $_SESSION['role_name'] == 'Administrator') 
             {
-             
-            $this->viewData['events'] = $this->eventManager->get_calendar_data($year, $month);
-                $data['calendar']=$this->eventManager->generate($year,$month);
+               $data['calendar']=$this->eventManager->generate($year,$month);
+                 
+                
+                $data['events']=$this->eventManager->getEvents($year,$month);
+                
+              
                 $this->load->view('events_admin',$data);      
             }else
             {          
-                $data['events']=$this->eventManager->getEvents();
+                
+                $data['calendar']=$this->eventManager->generate($year,$month);
+                $data['events']=$this->eventManager->getEvents($year,$month);
                 $this->load->view('events',$data); 
               
             }
-                    
+                
         $this->load->view('layout_components/header', $this->viewData);
         $this->load->view('layout_components/navbar', $this->navData);
-        $this->load->view('layout_components/footer');
+         
     }
+    
+    
     
     
     

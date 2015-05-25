@@ -1,26 +1,33 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <meta charset="utf-8" />
-        <title><?php echo basename(__FILE__); ?></title>
-  
-        </style>     
-    </head>
-    <body>
         
-         <?php
+        <title><?php echo basename(__FILE__); ?></title>
+  <meta charset="utf-8">
+ <link rel="stylesheet" href="<?php echo site_url('assets/css/events_admin.css'); ?>" />
+
+
+    </head>
+    <body>  
+     <?php echo $calendar; ?>
+ 
+ <?php
          
           
-                foreach ($events as $event)
+               foreach ($events as $event)
                     {
-                        echo 'Event_naam: '          . $event['event_name']       . '<br />';
-                        echo 'Spreker: '        . $event['speaker']         . '<br />';
-                        echo 'Locatie: ' . $event['location']  . '<br />';
-                        echo 'Datum: ' . $event['date_time']  . '<br /><br />';
+                        echo 'Name: '          . $event['event_name']       . '<br />';
+                        echo 'Speaker: '        . $event['speaker']         . '<br />';
+                        echo 'Location: ' . $event['location']  . '<br />';
+                        echo 'Date: ' . $event['date_time']  . '<br /><br />';
                     }
                 
             
             ?>
-         
+
+ 
+
+
+
     </body>
 </html>
