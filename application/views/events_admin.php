@@ -1,11 +1,16 @@
-
-<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
+ 
+<html>
+    <head>
+        
+        <title><?php echo basename(__FILE__); ?></title>
+  <meta charset="utf-8">
 <script src="https://maps.googleapis.com/maps/api/js?v=3.exp&signed_in=true"></script>
 <script type="text/javascript" src="<?php echo site_url('assets/js/GoogleMap.js'); ?>" ></script>  
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
 <script src="<?php echo site_url('assets/dist/js/bootstrap.min.js'); ?>"></script>
 
-
+</head>
+    <body>
 
 <script type="text/javascript" src="<?php echo site_url('assets/js/cal.js'); ?>" ></script>  
 
@@ -71,15 +76,17 @@ echo form_open('events/create', [
     </div>
 
 
-    <div class="events">
+     <div class="events">
         <?php
         foreach ($events as $event) {
-            echo 'Name: ' . $event['event_name'] . '<br />';
-            echo 'Speaker: ' . $event['speaker'] . '<br />';
-            echo 'Location: ' . $event['location'] . '<br />';
-            echo 'Date: ' . $event['date_time'] . '<br /><br />';
+            echo '<h4>'.'Name: ' . $event['event_name'] . '</h4><br />';
+            echo 'Spreker: ' . $event['speaker'] . '<br />';
+            echo 'Locatie: ' . $event['location'] . '<br />';
+            echo 'Datum: ' . $event['date_time'] . '<br /><br />';
         }
         ?>
 
     </div>
 </div>
+    </body>
+</html>
