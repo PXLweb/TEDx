@@ -109,7 +109,7 @@
         </div>
 
         <!--Submit-->
-        <button class="btn btn-lg btn-primary btn-block" type="submit"><?php echo $lang->getRegisterBtn(); ?></button><!--php code is de naam die op de button staat  -->
+        <button class="btn btn-lg btn-danger btn-block" type="submit"><?php echo $lang->getRegisterBtn(); ?></button><!--php code is de naam die op de button staat  -->
         </form>
     </div> <!-- /container -->
 </div>

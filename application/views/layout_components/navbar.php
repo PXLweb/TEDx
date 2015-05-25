@@ -32,7 +32,7 @@
                 <li id="twitter"><a class="social twitter" href="https://twitter.com/TEDxUHasselt">Twitter</a></li>
                 <li id="flickr"><a class="social flickr" href="http://www.flickr.com/photos/69639467@N06/">Flickr</a></li>
                 <li>
-                    <form class="navbar-form" action="http://localhost/tedx/search/execute_search" role="search" method="post">
+                    <form id="search" class="navbar-form" action="http://localhost/tedx/search/execute_search" role="search" method="post">
                         <div class="input-group">
                             <input type="text" class="form-control" placeholder="Search" name="srch-term" id="srch-term">
                             <div class="input-group-btn">

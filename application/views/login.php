@@ -45,5 +45,5 @@
     </div>
 
     <!--Submit-->
-    <button class="btn btn-lg btn-primary btn-block" type="submit"><?php echo $lang->getLoginButton(); ?></button>    
+    <button class="btn btn-lg btn-danger btn-block" type="submit"><?php echo $lang->getLoginButton(); ?></button>    
 </form>

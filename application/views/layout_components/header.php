@@ -10,7 +10,7 @@ if(!isset($_SESSION)){
         <title><?php echo $lang->getPageTitle(); ?></title>
         <link rel="icon" href="../../favicon.ico">
         <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css" />
-        <link rel="stylesheet" href="<?php echo site_url('newLayout/main.css'); ?>" />      
+        <link rel="stylesheet" href="<?php echo site_url('assets/css/main.css'); ?>" />      
         <?php
         if (isset($cssLinks)) {
             foreach($cssLinks as $link){
