@@ -2,7 +2,7 @@
 
     <!-- Main component for a primary marketing message or call to action -->
     <div class="jumbotron" >
-        <h1>Welcome to TEDx</h1>
+        <h1>Welcome to <span style="color: #d9534f">TEDx</span></h1>
         <p>TEDxUHasselt is an independently organized TED event. A place where you learn about cutting-edge ideas and connect with interesting people.</p>
         <p>
             <a class="btn btn-lg btn-danger" href="<?php echo $navbar->getEventsRoute(); ?>" role="button">Check out our events &raquo;</a>
@@ -17,7 +17,7 @@
     <div class="row">
         <div class="col-md-4">
             <h1>TEDxPXL</h1>
-            <p>EDxPXL is de programma van de PXL om mensen samen te brengen om een TED ervaring te delen.</p>
+            <p>TEDxPXL is de programma van de PXL om mensen samen te brengen om een TED ervaring te delen.</p>
             <p>
                 <a class="btn btn-lg btn-danger" href="#news1" role="button">Lees meer &raquo;</a>
             </p>
@@ -49,7 +49,7 @@
         <div class="col-md-4"></div>
         <div class="col-md-4">
             <h1>TEDxPXL</h1>
-            <p>TEDxPXL is de programma van de PXL om mensen samen te brengen om een TED ervaring te delen. Deze site is toegewijd aan de evenementen die PXL organiseerd rond TEDx. Op deze site kunt u een oog houden op de toekomstige evenementen, de gegeven commentaren van een afgelopen event en nog veel meer vinden.</p>
+            <p>TEDxPXL is het programma van de PXL om mensen samen te brengen om een TED ervaring te delen. Deze site is toegewijd aan de evenementen die PXL organiseerd rond TEDx. Op deze site kunt u een oog houden op de toekomstige evenementen, de gegeven commentaren van een afgelopen event en nog veel meer vinden.</p>
 
         </div>
         <div class="col-md-4"></div>
