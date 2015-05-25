@@ -1,6 +1,5 @@
-<!--The forum page lists all the categories-->
-<div class="container">
-    <!--    <div class="col-lg-7">-->
+
+<div class="container">   
     <div>
         <h1><?php echo $lang->getPageTitle() ?></h1>
         <h2><?php echo $lang->getCategories() ?></h2>

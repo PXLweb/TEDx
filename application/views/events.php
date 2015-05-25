@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,6 +13,11 @@
      <?php echo $calendar; ?>
  
  <?php
+=======
+
+        
+         <?php
+>>>>>>> ed8a8d8f10498f84b0fe7795635390edb445a2ad
          
           
                foreach ($events as $event)
@@ -24,6 +30,7 @@
                 
             
             ?>
+<<<<<<< HEAD
 
  
 
@@ -31,3 +38,6 @@
 
     </body>
 </html>
+=======
+         
+>>>>>>> ed8a8d8f10498f84b0fe7795635390edb445a2ad

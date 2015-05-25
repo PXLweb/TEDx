@@ -22,6 +22,29 @@ class Forum extends CI_Controller {
         // Generate data.
         $this->viewData = $this->dataGenerator->getViewData('forum', 'nl'); // Accessible in view through $lang
         $this->navData = $this->dataGenerator->getViewData('navbar', 'nl'); // Accessible in view through $navbar
+
+        
+        // START SETUP VAN DE CAPTCHA
+        try {
+            $xml = @new SimpleXMLElement('http://textcaptcha.com/api/a', NULL, TRUE);
+        } catch (Exception $e) {
+            $fallback = '<captcha>';
+            $fallback .= '<question>Is ice hot or cold?</question>';
+            $fallback .= '<answer>' . md5('cold') . '<answer>';
+            $fallback .= '</captcha>';
+            $xml = new SimpleXMLElement($fallback);
+        }
+
+        // store answers in session for use later
+        $answers = array();
+        foreach ($xml->answer as $hash) {
+            $answers[] = (string) $hash;
+        }
+        $this->session->set_userdata('captcha_answers', $answers);
+        // load vars into view
+        $this->load->vars(array('captcha' => (string) $xml->question));
+        // EINDE SETUP VAN DE CAPTCHA
+        
     }
 
 //    Loads all categories
@@ -43,9 +66,8 @@ class Forum extends CI_Controller {
         $_SESSION['subject'] = $this->forumManager->getTopicSubject($topic_id);
         $viewDataPosts['posts'] = $this->forumManager->getPosts($topic_id);
 
-        $captcha = new Captcha();
-        $cap = create_captcha($captcha->createData());
-        $viewDataPosts['captcha'] = $cap;
+        $this->load->library('form_validation');
+        $this->form_validation->set_rules('captcha', 'captcha', 'required|callback_check_captcha');
 
 //        Load views.
         $this->load->view('layout_components/header', $viewDataPosts);
@@ -107,6 +129,18 @@ class Forum extends CI_Controller {
     function postError() {
         $this->loadHeaderAndNavBar();
         $this->load->view('errors/post_error');
+    }
+
+    public function check_captcha($string) {
+        $user_answer = md5(strtolower(trim($string)));
+        $answers = $this->session->userdata('captcha_answers');
+
+        if (in_array($user_answer, $answers)) {
+            return TRUE;
+        } else {
+            $this->form_validation->set_message('check_captcha', 'Your answer was incorrect!');
+            return FALSE;
+        }
     }
 
 }

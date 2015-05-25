@@ -34,10 +34,10 @@
             if ($_SESSION['guest'] == TRUE || $_SESSION['role_name'] == 'Banned') {
                 $_SESSION['route_previous_page'] = 'forum/category/' . $_SESSION['category_id'];
                 echo '<p my-error">' . $lang->getOnlyUsersWarning() . '</p>';
-                echo '<p><a class="btn btn-lg btn-primary" href="' . site_url('login') . '">' . $lang->getLoginButton() . '</a></p>';
+                echo '<p><a class="btn btn-lg btn-danger" href="' . site_url('login') . '">' . $lang->getLoginButton() . '</a></p>';
             } else {
                 echo '<p>' .
-                '<input type="submit" class="btn btn-lg btn-primary" value="' . $lang->getNewButton() . '" /></p>';
+                '<input type="submit" class="btn btn-lg btn-danger" value="' . $lang->getNewButton() . '" /></p>';
             }
             ?>
             </form>
